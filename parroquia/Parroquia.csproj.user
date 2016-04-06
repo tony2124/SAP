@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishUrlHistory>C:\Users\Simpus\Desktop\PROGRAMA PARROQUIA\publicacion\|C:\Users\Public\PARROQUIA\|C:\Users\simpus\Dropbox\SIMPUS\PROYECTOS REALIZADOS\PROGRAMA PARROQUIA\ejecutable\</PublishUrlHistory>
+    <InstallUrlHistory />
+    <SupportUrlHistory />
+    <UpdateUrlHistory>http://www.simpus.com.mx/actualizaciones/parroquia/|https://www.dropbox.com/sh/ictoyb1vf52h2rk/AAC05dA7fz5_X8McTij7J0Aya/|https://www.dropbox.com/sh/ictoyb1vf52h2rk/AABHTEk82FgtmrkWUtGKh0tna/|http://www.parroquia.simpus.com.mx/</UpdateUrlHistory>
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>es-ES</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+</Project>

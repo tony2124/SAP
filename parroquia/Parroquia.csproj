@@ -1,0 +1,502 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{91076F83-B7E9-406D-A59B-6A59CE08BEE1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Parroquia</RootNamespace>
+    <AssemblyName>Parroquia</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\Simpus\Desktop\PROGRAMA PARROQUIA\publicacion\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <UpdateUrl>http://www.simpus.com.mx/actualizaciones/parroquia/</UpdateUrl>
+    <ProductName>Sistema para la Administración de Parroquia</ProductName>
+    <PublisherName>Simpus Soluciones Informáticas</PublisherName>
+    <ApplicationRevision>62</ApplicationRevision>
+    <ApplicationVersion>3.1.1.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>9851CD943A629C609C0F71030845053C8B6413A6</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Parroquia_ClaveTemporal.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>espiritu santo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.8.3\Assemblies\v4.5\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="acercade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="acercade.Designer.cs">
+      <DependentUpon>acercade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConexionBD.cs" />
+    <Compile Include="configurarCoordenada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="configurarCoordenada.Designer.cs">
+      <DependentUpon>configurarCoordenada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImprimirIngresos.cs" />
+    <Compile Include="ImprimirEgresos.cs" />
+    <Compile Include="DatosConexionDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatosConexionDB.Designer.cs">
+      <DependentUpon>DatosConexionDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DialogConfirmacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogConfirmacion.Designer.cs">
+      <DependentUpon>DialogConfirmacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DialogMatrimonio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogMatrimonio.Designer.cs">
+      <DependentUpon>DialogMatrimonio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Egresos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Egresos.Designer.cs">
+      <DependentUpon>Egresos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ingresos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ingresos.Designer.cs">
+      <DependentUpon>Ingresos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formatosImpresion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formatosImpresion.Designer.cs">
+      <DependentUpon>formatosImpresion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Imprimir.cs" />
+    <Compile Include="Informacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Informacion.Designer.cs">
+      <DependentUpon>Informacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrimerComunion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrimerComunion.Designer.cs">
+      <DependentUpon>PrimerComunion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Confirmacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Confirmacion.Designer.cs">
+      <DependentUpon>Confirmacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="crearLibro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="crearLibro.Designer.cs">
+      <DependentUpon>crearLibro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="editarLibro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editarLibro.Designer.cs">
+      <DependentUpon>editarLibro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eliminarLibro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eliminarLibro.Designer.cs">
+      <DependentUpon>eliminarLibro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bautismo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bautismo.Designer.cs">
+      <DependentUpon>Bautismo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Matrimonio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Matrimonio.Designer.cs">
+      <DependentUpon>Matrimonio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Libros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Libros.Designer.cs">
+      <DependentUpon>Libros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parroquia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parroquia.Designer.cs">
+      <DependentUpon>Parroquia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="acercade.resx">
+      <DependentUpon>acercade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="configurarCoordenada.resx">
+      <DependentUpon>configurarCoordenada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatosConexionDB.resx">
+      <DependentUpon>DatosConexionDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogConfirmacion.resx">
+      <DependentUpon>DialogConfirmacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogMatrimonio.resx">
+      <DependentUpon>DialogMatrimonio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Egresos.resx">
+      <DependentUpon>Egresos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formatosImpresion.resx">
+      <DependentUpon>formatosImpresion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Informacion.resx">
+      <DependentUpon>Informacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ingresos.resx">
+      <DependentUpon>Ingresos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrimerComunion.resx">
+      <DependentUpon>PrimerComunion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Confirmacion.resx">
+      <DependentUpon>Confirmacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="crearLibro.resx">
+      <DependentUpon>crearLibro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="editarLibro.resx">
+      <DependentUpon>editarLibro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eliminarLibro.resx">
+      <DependentUpon>eliminarLibro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bautismo.resx">
+      <DependentUpon>Bautismo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Matrimonio.resx">
+      <DependentUpon>Matrimonio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Libros.resx">
+      <DependentUpon>Libros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parroquia.resx">
+      <DependentUpon>Parroquia.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Parroquia_ClaveTemporal.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\simpus.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bautismo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\confirmacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comunion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\matrimonio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_simpus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facebook_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twitter_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\youtube_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eliminar-icono-4790-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imprimir-icono-3650-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guardar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\actualizar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\parroq.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p12.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p13.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p14.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p15.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p16.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p17.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p18.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p19.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p20.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ejem.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guardar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vistapre.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\egresos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gen_mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\virgen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="MySql.Data">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ingresos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bautismo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Confirmacion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Matrimonio.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PrimeraComunion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="espiritu santo.ico" />
+    <Content Include="holy spirit.ico" />
+    <Content Include="Holy Spirit2.ico" />
+    <None Include="Resources\parroquia_truncate.sql" />
+    <None Include="Resources\ConfirmacionOriginala.jpg" />
+    <None Include="Resources\ComunionOriginalFormato2b.jpg" />
+    <None Include="Resources\BautismoFormatoOriginal2.jpg" />
+    <None Include="Resources\BautismoFormatoOriginal1.jpg" />
+    <None Include="Resources\MatrimonioOriginalFormato1.jpg" />
+    <None Include="Resources\Image1.jpg" />
+    <None Include="Resources\MatrimonioOriginal.bmp" />
+    <None Include="Resources\PrimeraComunion1.jpg" />
+    <None Include="Resources\Confirmacion1.jpg" />
+    <None Include="Resources\Book-Red.png" />
+    <None Include="Resources\libro.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
