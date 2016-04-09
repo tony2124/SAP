@@ -97,6 +97,10 @@ namespace Parroquia
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.archivoToolStripMenuItem,
+            this.librosToolStripMenuItem,
+            this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1047, 24);
@@ -462,11 +466,11 @@ namespace Parroquia
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(695, 624);
+            this.label5.Location = new System.Drawing.Point(866, 621);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(338, 15);
+            this.label5.Size = new System.Drawing.Size(167, 15);
             this.label5.TabIndex = 18;
-            this.label5.Text = "LICENCIA PARA LA PARROQUIA DE VILLA VICTORIA";
+            this.label5.Text = "PROTOTIPO DE PRUEBA";
             // 
             // label13
             // 
@@ -642,7 +646,7 @@ namespace Parroquia
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Parroquia";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sistema para la Administración de la Parroquia";
+            this.Text = "Parroquía de Nuestra Señora de Guadalupe";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Parroquia_FormClosing);
             this.menuStrip1.ResumeLayout(false);

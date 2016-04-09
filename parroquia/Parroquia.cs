@@ -438,5 +438,10 @@ namespace Parroquia
             text_libro.Text = "";
             text_lugar.Text = "";
         }
+
+        private void informaciónDeLaParroquiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -69,3 +69,44 @@ C:\Users\Simpus\Desktop\PROGRAMA PARROQUIA\PROGRAMA PARROQUIA\parroquia actualiz
 C:\Users\Simpus\Desktop\PROGRAMA PARROQUIA\PROGRAMA PARROQUIA\parroquia actualizado 24jul2015\parroquia\Parroquia\obj\Debug\Parroquia.exe
 C:\Users\Simpus\Desktop\PROGRAMA PARROQUIA\PROGRAMA PARROQUIA\parroquia actualizado 24jul2015\parroquia\Parroquia\obj\Debug\Parroquia.pdb
 C:\Users\Simpus\Desktop\PROGRAMA PARROQUIA\PROGRAMA PARROQUIA\parroquia actualizado 24jul2015\parroquia\Parroquia\obj\Debug\Parroquia.csprojResolveAssemblyReference.cache
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\Parroquia.exe.config
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\Parroquia.exe.manifest
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\Parroquia.application
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\Parroquia.exe
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\Parroquia.pdb
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\Microsoft.CSharp.dll
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\MySql.Data.dll
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\System.Data.DataSetExtensions.dll
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\System.Data.dll
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\System.Deployment.dll
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\System.dll
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\System.Drawing.dll
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\System.Windows.Forms.DataVisualization.dll
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\System.Windows.Forms.dll
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\System.Xml.dll
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\System.Xml.Linq.dll
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.csprojResolveAssemblyReference.cache
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.acercade.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.configurarCoordenada.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.DatosConexionDB.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.DialogConfirmacion.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.DialogMatrimonio.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.Egresos.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.formatosImpresion.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.Informacion.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.Ingresos.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.PrimerComunion.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.Confirmacion.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.crearLibro.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.editarLibro.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.eliminarLibro.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.Bautismo.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.Matrimonio.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.Libros.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.Parroquia.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.Properties.Resources.resources
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.csproj.GenerateResource.Cache
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.exe.manifest
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.application
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.exe
+C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.pdb
