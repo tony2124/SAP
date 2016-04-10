@@ -129,7 +129,7 @@ namespace Parroquia
                     nombre_parroquia = datos.GetValue(0).ToString();
                     nombre_parroco = datos.GetValue(1).ToString();
 
-                    ubicacion_parroquia += datos.GetValue(2) + ""; //calles
+                    ubicacion_parroquia = datos.GetValue(2) + ""; //calles
                     ubicacion_parroquia += "," + datos.GetValue(3).ToString()+ "\n"; //colonia
                     ubicacion_parroquia += datos.GetValue(4).ToString()+", "; //ciudad
                     ubicacion_parroquia += datos.GetValue(5).ToString() + ", ";//estado
@@ -1586,166 +1586,136 @@ namespace Parroquia
             float tamaño_total, mitad;
             tamaño_total = 880 - ev.Graphics.MeasureString(libro, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
             mitad = tamaño_total / 2;
+            int y = 0;
             /********************************************************/
 
 
-            //IMPRIME LIBRO
-            ev.Graphics.DrawString(libro,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad-10, 260);
+         
 
-            //IMPRIME FOJA   
-            tamaño_total = 880 - ev.Graphics.MeasureString(foja, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(foja,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad + 127, 260);
+            //UBICACION PARROQUIA
 
-            //IMPRIME PARTIDA
-            tamaño_total = 880 - ev.Graphics.MeasureString(partida, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(partida,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad+270, 260);
+            ev.Graphics.DrawString(nombre_parroquia + "\n" + nombre_diocesis + "\n" + ubicacion_parroquia + "\nTel: " + telefono + "\nE-mail: " + email,
+              new Font("Arial", 12, FontStyle.Bold),
+                      Brushes.Black, ev.MarginBounds);
+
+            //LIBRO,FOJA,PARTIDA
+
+            ev.Graphics.DrawString(Int32.Parse(libro).ToString("D2"),
+               new Font("Arial", 12, FontStyle.Regular),
+                       Brushes.Black, 270, 455 + y);
+
+            ev.Graphics.DrawString(Int32.Parse(foja).ToString("D4"),
+               new Font("Arial", 12, FontStyle.Regular),
+                       Brushes.Black, 448, 455 + y);
+
+            ev.Graphics.DrawString(Int32.Parse(foja).ToString("D3"),
+               new Font("Arial", 12, FontStyle.Regular),
+                       Brushes.Black, 695, 455 + y);
+
 
              //IMPRIME Nombre
-            tamaño_total = 880 - ev.Graphics.MeasureString(nombre, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
              ev.Graphics.DrawString(nombre,
-                 new Font("Times New Roman", 9, FontStyle.Bold),
-                         Brushes.Black, mitad+80, 298);
+                 new Font("Arial", 9, FontStyle.Bold),
+                         Brushes.Black, 290, 530);
 
-            //IMPRIME PAPA 
+            //IMPRIME PAPA  Y MAMA
 
              if (padre.Contains('=') == true)
                  padre = "";
              if (madre.Contains('=') == true)
                  madre = "";
-             tamaño_total = 880 - ev.Graphics.MeasureString(padre, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
-             mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(padre,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad-125, 405);
+            
+            ev.Graphics.DrawString(padre + ", " + madre,
+                new Font("Arial", 9, FontStyle.Bold),
+                        Brushes.Black, 190, 560);
 
-            //IMPRIME MADRE
-            tamaño_total = 880 - ev.Graphics.MeasureString(madre, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(madre,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad+175, 405);
+        
 
             //IMPRIME LUGAR DE NACIMIENTO
-            tamaño_total = 880 - ev.Graphics.MeasureString(lugarNacimiento, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(lugarNacimiento,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad-150, 440);
+          
+            ev.Graphics.DrawString(lugarNacimiento + ". EL "+fechaNacimiento.ToUpper(),
+                new Font("Arial", 9, FontStyle.Bold),
+                        Brushes.Black, 350, 592);
 
-            //IMPRIME FECHA DE NACIMIENTO
-
-            //separo la fecha de nacimiento
-            String[] fecha = fechaNacimiento.Split('-');
-            fecha[1] = fecha[1].ToUpper();
-
-            //Imprimo el dia 
-            ev.Graphics.DrawString(fecha[2],
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, 465, 440);
-
-            //Imprimo el mes
-            tamaño_total = 880 - ev.Graphics.MeasureString(fecha[1], new Font("Times New Roman", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(fecha[1],
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad+155, 440);
-
-            //Imprimo el año
-            ev.Graphics.DrawString(fecha[0],
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, 695, 440);
-
+   
             //IMPRIME FECHA DE BAUTISMO
-            //separo la fecha de bautismo
-            fecha = fechaBautismo.Split('-');
+         
 
-            fecha[1] = fecha[1].ToUpper();
-
-            //imprimo el dia
-            ev.Graphics.DrawString(fecha[2],
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, 320, 477);
-
-            //imprimo el mes
-            tamaño_total = 880 - ev.Graphics.MeasureString(fecha[1], new Font("Times New Roman", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(fecha[1],
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad+80, 477);
-
-            //imprimo el año
-            ev.Graphics.DrawString(fecha[0],
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, 680, 477);
+            ev.Graphics.DrawString(fechaBautismo.ToUpper(),
+                new Font("Arial", 9, FontStyle.Bold),
+                        Brushes.Black, 320, 622);
 
             //IMPRIME PRESBITERO
-            tamaño_total = 880 - ev.Graphics.MeasureString(presbitero, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
+         
             ev.Graphics.DrawString(presbitero,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad+45, 513);
-
-            //IMPRIME PADRINO
+                new Font("Arial", 9, FontStyle.Bold),
+                        Brushes.Black, 440, 683);
+            
+            //IMPRIME PADRINO Y MADRINA
 
             if (padrino.Contains('=') == true)
                 padrino = "";
             if (madrina.Contains('=') == true)
                 madrina = "";
-            tamaño_total = 880 - ev.Graphics.MeasureString(padrino, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(padrino,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad-100, 547);
-
-            //IMPRIME MADRINA
-            tamaño_total = 880 - ev.Graphics.MeasureString(madrina, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(madrina,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad+185, 547);
+            ev.Graphics.DrawString(padrino+", "+madrina,
+                new Font("Arial", 9, FontStyle.Bold),
+                        Brushes.Black, 200, 653);
 
             //IMPRIME ANOTACIONES 
-            notasRenglones(anotacion,ev, 260, 618, 60, "b");
+            notasRenglones(anotacion,ev, 260, 716, 60, "b");
 
             //ESTABLECEMOS LA FECHA ACTUAL
-            String d = DateTime.Now.Day+"";
+            String d = DateTime.Now.Day + "";
             String m = DateTime.Now.ToString("MMMM");
-            String a = DateTime.Now.Year+"";
+            String a = DateTime.Now.Year + "";
 
             m = m.ToUpper();
+            string fechaActual = d + " de " + m.ToLower() + " del " + a;
 
-            ev.Graphics.DrawString(d,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, 290, 795);
+            ev.Graphics.DrawString(lugar + " " + fechaActual,
+                new Font("Arial", 12, FontStyle.Regular),
+                        Brushes.Black, 113, 835 + y);
 
-            tamaño_total = 880 - ev.Graphics.MeasureString(m, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
+
+            tamaño_total = 440 - ev.Graphics.MeasureString(nombre_parroco,
+                new Font("Arial", 10, FontStyle.Bold)).Width;
             mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(m,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad+50, 795);
-
-            ev.Graphics.DrawString(a,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, 655, 795);
-
-            nombre_parroco = nombre_parroco.ToUpper();
-
-            tamaño_total = 880 - ev.Graphics.MeasureString(nombre_parroco, 
-                new Font("Times New Roman", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-
             ev.Graphics.DrawString(nombre_parroco,
-                new Font("Times New Roman", 9, FontStyle.Bold),
-                        Brushes.Black, mitad + 120, 970);
+               new Font("Arial", 10, FontStyle.Bold),
+                       Brushes.Black, mitad + 400, 930 + y);
+
+
+            /********************** QR **********************/
+            Bdatos.conexion();
+            Datos = Bdatos.obtenerBasesDatosMySQL("SELECT * FROM informacion");
+
+            if (Datos.HasRows)
+            {
+                while (Datos.Read())
+                {
+
+                    var qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
+                    var qrCode = qrEncoder.Encode("Certificado de Bautismo - " + Datos.GetValue(0) + ", " + Datos.GetValue(12) + " - Pbro. " + nombre_parroco + " - Expedido a " + nombre + " el " + fechaActual + ". LIBRO: " + libro + " FOJA: " + foja + " PARTIDA: " + partida);
+
+                    var renderer = new GraphicsRenderer(new FixedModuleSize(5, QuietZoneModules.Two), Brushes.Black, Brushes.White);
+
+                    var stream = new FileStream(@rutaQr, FileMode.Create);
+                    renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
+
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(stream); //.FromFile(@rutaQr);
+
+                    ev.Graphics.DrawImage(img, 113, 860 + y, 130, 130);
+
+                }
+            }
+            Bdatos.Desconectar();
+
+
+            /********************* iMG LOGO *************************/
+
+            System.Drawing.Image logo = System.Drawing.Image.FromFile(@"c:/DOCSParroquia/logo.jpg");
+
+            ev.Graphics.DrawImage(logo, 610, 60);
 
 
         }
@@ -1758,7 +1728,7 @@ namespace Parroquia
             if (nota.Length > u)
             {
                 ev.Graphics.DrawString(nota.Substring(0, u)+" - ",
-              new Font("Times New Roman", 9, FontStyle.Bold),
+              new Font("Arial", 9, FontStyle.Bold),
                       Brushes.Black, i, j);
                 if (l.CompareTo("a") == 0)
                 {
@@ -1776,7 +1746,7 @@ namespace Parroquia
             else
             {
                 ev.Graphics.DrawString(nota,
-                new Font("Times New Roman", 9, FontStyle.Bold),
+                new Font("Arial", 9, FontStyle.Bold),
                 Brushes.Black, i, j);
             }
             
