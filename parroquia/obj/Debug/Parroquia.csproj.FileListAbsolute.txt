@@ -110,3 +110,6 @@ C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.exe.manifest
 C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.application
 C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.exe
 C:\Users\Simpus\Desktop\SAP\Parroquia\obj\Debug\Parroquia.pdb
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\Gma.QrCodeNet.Encoding.dll
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\Gma.QrCodeNet.Encoding.pdb
+C:\Users\Simpus\Desktop\SAP\Parroquia\bin\Debug\Gma.QrCodeNet.Encoding.xml

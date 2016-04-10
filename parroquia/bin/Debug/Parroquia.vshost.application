@@ -14,14 +14,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Parroquia.exe.manifest" size="5495">
+    <dependentAssembly dependencyType="install" codebase="Parroquia.exe.manifest" size="6158">
       <assemblyIdentity name="Parroquia.exe" version="3.1.1.62" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>15+tYUWkv4NFw2E/M/I35h3tUKqw/7HcVzs/EMjy3NY=</dsig:DigestValue>
+        <dsig:DigestValue>qlFaSDHGeMuMWBpkGGB1YZ0J5neluPeFp5OSIrnzeCc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

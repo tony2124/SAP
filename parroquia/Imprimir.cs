@@ -31,7 +31,8 @@ namespace Parroquia
             fechaComunion, parroquiaBautismo, diocesisBautismo, novio,
             novia, testigo1, testigo2, fechaMatrimonio, lugarCelebracion,
             padreNovio, madreNovio, padreNovia, madreNovia,
-            nombre_parroquia, nombre_parroco, ubicacion_parroquia, nombre_obispo;
+            nombre_parroquia, nombre_parroco, ubicacion_parroquia, nombre_obispo, telefono, nombre_diocesis, 
+            email, lugar;
 
         public static bool impresion = true;
 
@@ -113,16 +114,27 @@ namespace Parroquia
             DbDatos = new ConexionBD();
             DbDatos.conexion();
 
-            datos = DbDatos.obtenerBasesDatosMySQL("select nombre_parroquia, nombre_parroco, ubicacion_parroquia, nombre_obispo from informacion");
+            datos = DbDatos.obtenerBasesDatosMySQL("select * from informacion");
 
             if (datos.HasRows)
             {
                 while (datos.Read())
                 {
-                    nombre_parroquia = datos.GetValue(0).ToString().ToUpper();
-                    nombre_parroco = datos.GetValue(1).ToString().ToUpper();
-                    ubicacion_parroquia = datos.GetValue(2).ToString().ToUpper();
-                    nombre_obispo = datos.GetValue(3).ToString().ToUpper();
+                    nombre_parroquia = datos.GetValue(0).ToString();
+                    nombre_parroco = datos.GetValue(1).ToString();
+
+                    ubicacion_parroquia += datos.GetValue(2) + ""; //calles
+                    ubicacion_parroquia += "," + datos.GetValue(3).ToString()+ "\n"; //colonia
+                    ubicacion_parroquia += datos.GetValue(4).ToString()+", "; //ciudad
+                    ubicacion_parroquia += datos.GetValue(5).ToString() + ", ";//estado
+                    ubicacion_parroquia += "C.P. "+datos.GetValue(6).ToString();//cp
+
+                    lugar = datos.GetValue(4).ToString() + ", " + datos.GetValue(5).ToString()+".";//estado; //ciudad
+
+                    telefono = datos.GetValue(7).ToString();
+                    email = datos.GetValue(8).ToString();
+                    nombre_obispo = datos.GetValue(11).ToString();
+                    nombre_diocesis = datos.GetValue(12).ToString();
                 }
             }
             DbDatos.Desconectar();
@@ -903,64 +915,67 @@ namespace Parroquia
         {
             String[] fecha;
             imprimeImagen(ev);
+
+            ev.PageSettings.Margins.Right = 10;
             /*OBTENCION DE LA MITAD DE LA HOJA***********************/
             float tamaño_total, mitad;
             
             /********************************************************/
 
-            //IMPRIME PARROCO
-            ev.Graphics.DrawString(nombre_parroco,
-               new Font("Arial", 12, FontStyle.Regular),
-                       Brushes.Black, 390, 315);
+            //UBICACION PARROQUIA
 
+            ev.Graphics.DrawString( nombre_parroquia + "\n" + nombre_diocesis + "\n" + ubicacion_parroquia +"\nTel: "+telefono+"\nE-mail: "+email,
+              new Font("Arial", 12, FontStyle.Bold),
+                      Brushes.Black, ev.MarginBounds);
+
+            //LIBRO,FOJA,PARTIDA
+
+            ev.Graphics.DrawString("\n\n\n\n\n\n\n\n\n\n\n\n\nEl sacerdote que suscribe hace constar que en el archivo de esta Parroquia, en el libro de registro de primeras comuniones número: " + Int32.Parse(libro).ToString("D2") + ", página: " + Int32.Parse(foja).ToString("D4") + " y partida: " + Int32.Parse(foja).ToString("D3") + " están asentados los siguientes datos de la persona que recibió su primera eucaristía:  ",
+               new Font("Arial", 12, FontStyle.Regular),
+                       Brushes.Black, ev.MarginBounds);
+  /*
+            ev.Graphics.DrawString(,
+               new Font("Arial", 12, FontStyle.Bold),
+                       Brushes.Black, 493, 395);
+
+            */
 
             //IMPRIME NOMBRE
             tamaño_total = 880 - ev.Graphics.MeasureString(nombre, 
-                new Font("Times New Roman", 18, FontStyle.Bold)).Width;
+                new Font("Arial", 12, FontStyle.Bold)).Width;
+
             mitad = tamaño_total / 2;
+
             ev.Graphics.DrawString(nombre,
-               new Font("Times New Roman", 18, FontStyle.Bold),
-                       Brushes.Black, mitad, 385);
+               new Font("Arial", 12, FontStyle.Bold),
+                       Brushes.Black, mitad, 455);
 
-            //IMPRIME FECHA DE COMUNION
-            fecha = fechaComunion.Split('-');
-            ev.Graphics.DrawString(fecha[2] + " DE " + fecha[1].ToUpper() + " DE " + fecha[0] + ".",
-                new Font("Times New Roman", 12, FontStyle.Bold),
-                        Brushes.Black, 470, 442);
 
-             //LIBRO,FOJA,HOJA
-            ev.Graphics.DrawString("Y queda asentado en el ",
-               new Font("Times New Roman", 14, FontStyle.Regular),
-                       Brushes.Black, 112, 466);
-
-            ev.Graphics.DrawString("libro: " + libro + ", foja: " + foja +
-                " y partida: " + partida,
-               new Font("Times New Roman", 14, FontStyle.Bold),
-                       Brushes.Black, 312, 466);
-
-            //IMPRIME PADRES
-            string padres = "";
-
+            //IMPRIME PADRE
+           
             if (padre.Contains('=') == true)
                 padre = "";
             if (madre.Contains('=') == true)
                 madre = "";
 
-            if (padre.Trim().Length > 4 && madre.Trim().Length < 4)
-            {
-                padres = "PADRE: " + padre;
-            }
-            else if (padre.Trim().Length < 4 && madre.Trim().Length > 4)
-            {
-                padres = "MADRE: " + madre;
-            }
-            else if (padre.Trim().Length > 4 && madre.Trim().Length > 4)
-            {
-                padres = "PADRES: " + padre + "  Y " + madre;
-            }
-            ev.Graphics.DrawString(padres,
-                new Font("Times New Roman", 12, FontStyle.Bold),
-                        Brushes.Black, 114, 513);
+            tamaño_total = 880 - ev.Graphics.MeasureString(padre,
+                new Font("Arial", 12, FontStyle.Bold)).Width;
+
+            mitad = tamaño_total / 2;
+
+            ev.Graphics.DrawString(padre,
+                new Font("Arial", 12, FontStyle.Bold),
+                        Brushes.Black, mitad, 507);
+
+            /*** IMPRIME MADRE **/
+            tamaño_total = 880 - ev.Graphics.MeasureString(madre,
+                new Font("Arial", 12, FontStyle.Bold)).Width;
+
+            mitad = tamaño_total / 2;
+
+            ev.Graphics.DrawString(madre,
+                new Font("Arial", 12, FontStyle.Bold),
+                        Brushes.Black, mitad, 560);
 
             //IMPRIME PADRINOS
             String padrinos="";
@@ -972,55 +987,81 @@ namespace Parroquia
 
             if (padrino.Trim().Length > 4 && madrina.Trim().Length < 4)
             {
-                padrinos = "PADRINO: " + padrino;
+                padrinos = padrino;
             }
             else if (padrino.Trim().Length < 4 && madrina.Trim().Length > 4)
             {
-                padrinos = "MADRINA: " + madrina;
+                padrinos =  madrina;
             }
             else if (padrino.Trim().Length > 4 && madrina.Trim().Length > 4)
             {
-                padrinos = "PADRINOS: " + padrino + " Y " + madrina;
+                padrinos = padrino + " Y " + madrina;
             }
+
+            tamaño_total = 880 - ev.Graphics.MeasureString(padrinos,
+               new Font("Arial", 12, FontStyle.Bold)).Width;
+
+            mitad = tamaño_total / 2;
+
             ev.Graphics.DrawString(padrinos,
-                new Font("Times New Roman", 12, FontStyle.Bold),
-                        Brushes.Black, 114, 538);
+                new Font("Arial", 12, FontStyle.Bold),
+                        Brushes.Black, mitad, 610);
+
+
+      
 
             //IMPRIME LUGAR Y FECHA DE BAUTISMO
-            fecha = fechaBautismo.Split('-');
-            /*string luharFechaBautismo = lugarBautismo + " EL DÍA " + fecha[2] + " DE " + fecha[1].ToUpper() + " DE " + fecha[0];
-            notasRenglones(luharFechaBautismo, ev, 430, 564, 30,"a");*/
-            ev.Graphics.DrawString("Realizó su bautismo en la parroquia de "+lugarBautismo+".",
-               new Font("Times New Roman", 12, FontStyle.Bold),
-                       Brushes.Black, 114, 560);
+            fecha = fechaComunion.Split('-');
 
-            ev.Graphics.DrawString("El día: " + fecha[2] + 
+            String lugaryfecha = lugarBautismo+". El " + fecha[2] + 
                 " DE " + fecha[1].ToUpper() +
-                " DE " + fecha[0]+ ".",
-               new Font("Times New Roman", 12, FontStyle.Bold),
-                       Brushes.Black, 114, 584);
+                " DE " + fecha[0]+ ".";
 
+            tamaño_total = 880 - ev.Graphics.MeasureString(lugaryfecha,
+               new Font("Arial", 12, FontStyle.Bold)).Width;
+
+            mitad = tamaño_total / 2;
+            ev.Graphics.DrawString(lugaryfecha,
+               new Font("Arial", 12, FontStyle.Bold),
+                       Brushes.Black, mitad, 663);
+
+            //IMPRIME FECHA DE BAUTISMO
+            fecha = fechaBautismo.Split('-');
+            String fecha_bau = fecha[2] + " DE " + fecha[1].ToUpper() + " DE " + fecha[0] + ".";
+            tamaño_total = 880 - ev.Graphics.MeasureString(fecha_bau,
+              new Font("Arial", 12, FontStyle.Bold)).Width;
+
+            mitad = tamaño_total / 2;
+            ev.Graphics.DrawString(fecha_bau,
+                new Font("Arial", 12, FontStyle.Bold),
+                        Brushes.Black, mitad, 713);
+            
+
+            
             //ESTABLECEMOS LA FECHA ACTUAL
             String d = DateTime.Now.Day + "";
             String m = DateTime.Now.ToString("MMMM");
             String a = DateTime.Now.Year + "";
 
             m = m.ToUpper();
-            string fechaActual = d + " DE " + m + " DE " + a;
-            ev.Graphics.DrawString(fechaActual,
-                new Font("Times New Roman", 12, FontStyle.Bold),
-                        Brushes.Black, 325, 722);
+            string fechaActual = d + " de " + m.ToLower() + " del " + a;
 
-            nombre_parroco = nombre_parroco.ToUpper();
-            tamaño_total = 880 - ev.Graphics.MeasureString(nombre_parroco, 
-                new Font("Times New Roman", 10, FontStyle.Bold)).Width;
+            ev.Graphics.DrawString(lugar + " " + fechaActual,
+                new Font("Arial", 12, FontStyle.Regular),
+                        Brushes.Black, 113, 865);
+
+  
+            tamaño_total = 440 - ev.Graphics.MeasureString(nombre_parroco, 
+                new Font("Arial", 10, FontStyle.Bold)).Width;
             mitad = tamaño_total / 2;
             ev.Graphics.DrawString(nombre_parroco,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-                       Brushes.Black, mitad-10, 865);
+               new Font("Arial", 10, FontStyle.Bold),
+                       Brushes.Black, mitad+420, 970);
 
            
         }
+
+       
 
         //METODO PARA IMPRIMIR FORMATO ORIGINAL HORIZONTAL EN BAUTISMOS
         private void imprimirBautismoFormato2(object sender, PrintPageEventArgs ev)

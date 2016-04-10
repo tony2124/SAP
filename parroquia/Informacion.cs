@@ -10,6 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+using Gma.QrCodeNet.Encoding;
+using Gma.QrCodeNet.Encoding.Windows.Render;
+using System.IO;
+using System.Drawing.Imaging;
 namespace Parroquia
 {
     public partial class Informacion : Form
@@ -23,18 +28,33 @@ namespace Parroquia
             Bdatos.conexion();
             Datos = Bdatos.obtenerBasesDatosMySQL("SELECT * FROM informacion");
 
+            var qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
+            var qrCode = qrEncoder.Encode("Parroquia de Ntra. Sra. de la Anunciación. Diocesis de Apatzingán");
+
+            var renderer = new GraphicsRenderer(new FixedModuleSize(5, QuietZoneModules.Two), Brushes.Black, Brushes.White);
+            using (var stream = new FileStream(@"c:/DOCSParroquia/qrcode.png", FileMode.Create))
+                renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
+
+
             if (Datos.HasRows)
             {
                 while (Datos.Read())
                 {
-
                     nombre_parroquia.Text = Datos.GetValue(0) + "";
                     nombre_parroco.Text = Datos.GetValue(1) + "";
-                    ubicacion_parroquia.Text = Datos.GetValue(2) + "";
-                    telefono.Text = Datos.GetValue(3) + "";
-
-                    nombre_obispo.Text = Datos.GetValue(6)+"";
-                    nombre_diocesis.Text = Datos.GetValue(7) + "";
+                    calles.Text = Datos.GetValue(2) + "";
+                    colonia.Text = Datos.GetValue(3) + "";
+                    ciudad.Text = Datos.GetValue(4) + "";
+                    estado.Text = Datos.GetValue(5) + "";
+                    cp.Text = Datos.GetValue(6) + "";
+                    
+                    telefono.Text = Datos.GetValue(7) + "";
+                    email.Text = Datos.GetValue(8) + "";
+                    //ubicacion carpeta = Datos.GetValue(9) + "";
+                    //contrasena  = Datos.GetValue(10) + "";
+                    nombre_obispo.Text = Datos.GetValue(11)+"";
+                    nombre_diocesis.Text = Datos.GetValue(12) + "";
+                    
                 }
             }
             Bdatos.Desconectar();
@@ -51,8 +71,13 @@ namespace Parroquia
             Bdatos.conexion();
             if (Bdatos.peticion("UPDATE informacion set nombre_parroquia = '" + nombre_parroquia.Text + 
                 "', nombre_parroco = '" + nombre_parroco.Text + 
-                "', ubicacion_parroquia = '" + ubicacion_parroquia.Text + 
-                "', telefono = '" + telefono.Text + 
+                "', calles = '" + calles.Text + 
+                "', colonia = '" + colonia.Text +
+                "', ciudad = '" + ciudad.Text +
+                "', estado = '" + estado.Text +
+                "', cp = '" + cp.Text +
+                "', telefono = '" + telefono.Text +
+                "', email = '" + email.Text + 
                 "', nombre_obispo = '" + nombre_obispo.Text + 
                 "', nombre_diocesis = '" + nombre_diocesis.Text + "'") > 0)
                  MessageBox.Show("Se ha actualizado correctamente la información de la parroquia", " Acción exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
