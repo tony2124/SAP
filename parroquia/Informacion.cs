@@ -28,13 +28,7 @@ namespace Parroquia
             Bdatos.conexion();
             Datos = Bdatos.obtenerBasesDatosMySQL("SELECT * FROM informacion");
 
-            var qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
-            var qrCode = qrEncoder.Encode("Parroquia de Ntra. Sra. de la Anunciación. Diocesis de Apatzingán");
-
-            var renderer = new GraphicsRenderer(new FixedModuleSize(5, QuietZoneModules.Two), Brushes.Black, Brushes.White);
-            using (var stream = new FileStream(@"c:/DOCSParroquia/qrcode.png", FileMode.Create))
-                renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
-
+           
 
             if (Datos.HasRows)
             {
@@ -54,7 +48,15 @@ namespace Parroquia
                     //contrasena  = Datos.GetValue(10) + "";
                     nombre_obispo.Text = Datos.GetValue(11)+"";
                     nombre_diocesis.Text = Datos.GetValue(12) + "";
-                    
+
+
+                    var qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
+                    var qrCode = qrEncoder.Encode(Datos.GetValue(0) + ", " + Datos.GetValue(12) );
+
+                    var renderer = new GraphicsRenderer(new FixedModuleSize(5, QuietZoneModules.Two), Brushes.Black, Brushes.White);
+                    using (var stream = new FileStream(@"c:/DOCSParroquia/qrcode.png", FileMode.Create))
+                        renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
+
                 }
             }
             Bdatos.Desconectar();

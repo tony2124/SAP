@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using conexionbd;
 using MySql.Data.MySqlClient;
+using Gma.QrCodeNet.Encoding;
+using Gma.QrCodeNet.Encoding.Windows.Render;
+using System.Drawing.Imaging;
 
 namespace Parroquia
 {
@@ -31,14 +34,17 @@ namespace Parroquia
             fechaComunion, parroquiaBautismo, diocesisBautismo, novio,
             novia, testigo1, testigo2, fechaMatrimonio, lugarCelebracion,
             padreNovio, madreNovio, padreNovia, madreNovia,
-            nombre_parroquia, nombre_parroco, ubicacion_parroquia, nombre_obispo, telefono, nombre_diocesis, 
-            email, lugar;
+            nombre_parroquia, nombre_parroco, ubicacion_parroquia, nombre_obispo, telefono, nombre_diocesis,
+            email, lugar, rutaQr = "c:/DOCSParroquia/qrcode.png";
 
         public static bool impresion = true;
 
         public int CATEGORIA, FORMATO;
         public ConexionBD DbDatos;
         public MySqlDataReader datos;
+
+        ConexionBD Bdatos = new ConexionBD();
+        MySqlDataReader Datos;
 
         public void leerArchivoBautismo()
         {
@@ -919,6 +925,7 @@ namespace Parroquia
             ev.PageSettings.Margins.Right = 10;
             /*OBTENCION DE LA MITAD DE LA HOJA***********************/
             float tamaño_total, mitad;
+            int y = 24;
             
             /********************************************************/
 
@@ -930,15 +937,18 @@ namespace Parroquia
 
             //LIBRO,FOJA,PARTIDA
 
-            ev.Graphics.DrawString("\n\n\n\n\n\n\n\n\n\n\n\n\nEl sacerdote que suscribe hace constar que en el archivo de esta Parroquia, en el libro de registro de primeras comuniones número: " + Int32.Parse(libro).ToString("D2") + ", página: " + Int32.Parse(foja).ToString("D4") + " y partida: " + Int32.Parse(foja).ToString("D3") + " están asentados los siguientes datos de la persona que recibió su primera eucaristía:  ",
+            ev.Graphics.DrawString(Int32.Parse(libro).ToString("D2"),
                new Font("Arial", 12, FontStyle.Regular),
-                       Brushes.Black, ev.MarginBounds);
-  /*
-            ev.Graphics.DrawString(,
-               new Font("Arial", 12, FontStyle.Bold),
-                       Brushes.Black, 493, 395);
+                       Brushes.Black, 570, 349+y);
 
-            */
+            ev.Graphics.DrawString(Int32.Parse(foja).ToString("D4"),
+               new Font("Arial", 12, FontStyle.Regular),
+                       Brushes.Black, 688,349+y);
+
+            ev.Graphics.DrawString(Int32.Parse(foja).ToString("D3"),
+               new Font("Arial", 12, FontStyle.Regular),
+                       Brushes.Black, 198,371+y);
+
 
             //IMPRIME NOMBRE
             tamaño_total = 880 - ev.Graphics.MeasureString(nombre, 
@@ -948,7 +958,7 @@ namespace Parroquia
 
             ev.Graphics.DrawString(nombre,
                new Font("Arial", 12, FontStyle.Bold),
-                       Brushes.Black, mitad, 455);
+                       Brushes.Black, mitad, 455+y);
 
 
             //IMPRIME PADRE
@@ -965,7 +975,7 @@ namespace Parroquia
 
             ev.Graphics.DrawString(padre,
                 new Font("Arial", 12, FontStyle.Bold),
-                        Brushes.Black, mitad, 507);
+                        Brushes.Black, mitad, 506+y);
 
             /*** IMPRIME MADRE **/
             tamaño_total = 880 - ev.Graphics.MeasureString(madre,
@@ -975,7 +985,7 @@ namespace Parroquia
 
             ev.Graphics.DrawString(madre,
                 new Font("Arial", 12, FontStyle.Bold),
-                        Brushes.Black, mitad, 560);
+                        Brushes.Black, mitad, 559+y);
 
             //IMPRIME PADRINOS
             String padrinos="";
@@ -1005,7 +1015,7 @@ namespace Parroquia
 
             ev.Graphics.DrawString(padrinos,
                 new Font("Arial", 12, FontStyle.Bold),
-                        Brushes.Black, mitad, 610);
+                        Brushes.Black, mitad, 610+y);
 
 
       
@@ -1015,7 +1025,7 @@ namespace Parroquia
 
             String lugaryfecha = lugarBautismo+". El " + fecha[2] + 
                 " DE " + fecha[1].ToUpper() +
-                " DE " + fecha[0]+ ".";
+                " DE " + fecha[0];
 
             tamaño_total = 880 - ev.Graphics.MeasureString(lugaryfecha,
                new Font("Arial", 12, FontStyle.Bold)).Width;
@@ -1023,18 +1033,18 @@ namespace Parroquia
             mitad = tamaño_total / 2;
             ev.Graphics.DrawString(lugaryfecha,
                new Font("Arial", 12, FontStyle.Bold),
-                       Brushes.Black, mitad, 663);
+                       Brushes.Black, mitad, 663+y);
 
             //IMPRIME FECHA DE BAUTISMO
             fecha = fechaBautismo.Split('-');
-            String fecha_bau = fecha[2] + " DE " + fecha[1].ToUpper() + " DE " + fecha[0] + ".";
+            String fecha_bau = fecha[2] + " DE " + fecha[1].ToUpper() + " DE " + fecha[0];
             tamaño_total = 880 - ev.Graphics.MeasureString(fecha_bau,
               new Font("Arial", 12, FontStyle.Bold)).Width;
 
             mitad = tamaño_total / 2;
             ev.Graphics.DrawString(fecha_bau,
                 new Font("Arial", 12, FontStyle.Bold),
-                        Brushes.Black, mitad, 713);
+                        Brushes.Black, mitad, 713+y);
             
 
             
@@ -1048,7 +1058,7 @@ namespace Parroquia
 
             ev.Graphics.DrawString(lugar + " " + fechaActual,
                 new Font("Arial", 12, FontStyle.Regular),
-                        Brushes.Black, 113, 865);
+                        Brushes.Black, 113, 845+y);
 
   
             tamaño_total = 440 - ev.Graphics.MeasureString(nombre_parroco, 
@@ -1056,13 +1066,45 @@ namespace Parroquia
             mitad = tamaño_total / 2;
             ev.Graphics.DrawString(nombre_parroco,
                new Font("Arial", 10, FontStyle.Bold),
-                       Brushes.Black, mitad+420, 970);
+                       Brushes.Black, mitad+420, 935+y);
+
+
+            /********************** QR **********************/
+            Bdatos.conexion();
+            Datos = Bdatos.obtenerBasesDatosMySQL("SELECT * FROM informacion");
+
+            if (Datos.HasRows)
+            {
+                while (Datos.Read())
+                {
+
+                    var qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
+                    var qrCode = qrEncoder.Encode("Certificado de Primera comunión - " + Datos.GetValue(0) + ", " + Datos.GetValue(12) + " - Pbro. " + nombre_parroco + " - Expedido a "+nombre +" el "+fechaActual+". LIBRO: "+libro+" FOJA: "+foja+" PARTIDA: "+partida);
+
+                    var renderer = new GraphicsRenderer(new FixedModuleSize(5, QuietZoneModules.Two), Brushes.Black, Brushes.White);
+                  
+                     var stream = new FileStream(@rutaQr, FileMode.Create) ;
+                    renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
+
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(stream); //.FromFile(@rutaQr);
+                    
+                    ev.Graphics.DrawImage(img,113, 880+y,130,130);
+                    
+                }
+            }
+            Bdatos.Desconectar();
+
+
+            /********************* iMG LOGO *************************/
+
+            System.Drawing.Image logo = System.Drawing.Image.FromFile(@"c:/DOCSParroquia/logo.jpg");
+
+            ev.Graphics.DrawImage(logo, 610, 60);
 
            
         }
 
-       
-
+ 
         //METODO PARA IMPRIMIR FORMATO ORIGINAL HORIZONTAL EN BAUTISMOS
         private void imprimirBautismoFormato2(object sender, PrintPageEventArgs ev)
         {
