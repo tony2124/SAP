@@ -443,9 +443,9 @@ namespace Parroquia
                Brushes.Black, mitad-75+x, 100+y);
 
             //NOMBRE Y LUGAR DE PARROQUIA
-            tamaño_total = 880 - ev.Graphics.MeasureString(nombre_parroquia+", "+ubicacion_parroquia , new Font("Times New Roman", 12, FontStyle.Bold)).Width;
+            tamaño_total = 880 - ev.Graphics.MeasureString(nombre_parroquia+", "+lugar , new Font("Times New Roman", 12, FontStyle.Bold)).Width;
             mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(nombre_parroquia + ", " + ubicacion_parroquia,
+            ev.Graphics.DrawString(nombre_parroquia + ", " + lugar,
                new Font("Times New Roman", 12, FontStyle.Bold),
                Brushes.Black, mitad - 75+x, 160+y);
 
@@ -879,10 +879,10 @@ namespace Parroquia
                 Brushes.Black, mitad-100+x, 505+y);
 
             //IMPRIME PARROQUIA DE CONFIRMACION
-            tamaño_total = 880 - ev.Graphics.MeasureString(nombre_parroquia + " " + ubicacion_parroquia,
+            tamaño_total = 880 - ev.Graphics.MeasureString(nombre_parroquia + " " + lugar,
            new Font("Times New Roman", 7, FontStyle.Bold)).Width;
             mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(nombre_parroquia+" "+ubicacion_parroquia,
+            ev.Graphics.DrawString(nombre_parroquia+" "+lugar,
                 new Font("Times New Roman", 7, FontStyle.Bold),
                 Brushes.Black, mitad-70+x, 535+y);
 
@@ -1103,7 +1103,6 @@ namespace Parroquia
 
            
         }
-
  
         //METODO PARA IMPRIMIR FORMATO ORIGINAL HORIZONTAL EN BAUTISMOS
         private void imprimirBautismoFormato2(object sender, PrintPageEventArgs ev)
@@ -1137,9 +1136,9 @@ namespace Parroquia
                        Brushes.Black, mitad+5+x, 103+y);
 
             //LUGAR BAUTISMO
-            tamaño_total = 880 - ev.Graphics.MeasureString(nombre_parroquia+ " " + ubicacion_parroquia, new Font("Times New Roman", 11, FontStyle.Bold)).Width;
+            tamaño_total = 880 - ev.Graphics.MeasureString(nombre_parroquia+ " " + lugar, new Font("Times New Roman", 11, FontStyle.Bold)).Width;
             mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(nombre_parroquia+" "+ubicacion_parroquia,
+            ev.Graphics.DrawString(nombre_parroquia+" "+lugar,
                new Font("Times New Roman", 11, FontStyle.Bold),
                        Brushes.Black, mitad+5+x, 163+y);
 
@@ -1366,9 +1365,9 @@ namespace Parroquia
                         Brushes.Black, mitad+55+x, 496+y);
 
             //IMPRIME LUGAR DE BAUTISMO
-            tamaño_total = 880 - ev.Graphics.MeasureString(ubicacion_parroquia, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
+            tamaño_total = 880 - ev.Graphics.MeasureString(lugar, new Font("Times New Roman", 9, FontStyle.Bold)).Width;
             mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(ubicacion_parroquia,
+            ev.Graphics.DrawString(lugar,
                 new Font("Times New Roman", 9, FontStyle.Bold),
                         Brushes.Black, mitad-125+x, 568+y);
 
