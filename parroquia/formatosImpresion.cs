@@ -91,7 +91,6 @@ namespace Parroquia
                 this.PRESBITERO = G;
                 this.MADRINA = H;
                 this.PADRINO = I;
-                this.originalHorizontal.Enabled = false;
 
             }
             else if (categoria == 3)
@@ -105,7 +104,6 @@ namespace Parroquia
                 this.MADRINA = G;
                 this.PADRINO = H;
                 this.PRESBITERO = I;
-                this.originalVertical.Enabled = false;
             }
             else if (categoria == 4)
             {
@@ -117,7 +115,6 @@ namespace Parroquia
                 this.TESTIGO2 = F;
                 this.PRESBITERO = G;
                 this.ANOTACION = H;
-                this.originalHorizontal.Enabled = false;
             }
         }
 
@@ -158,37 +155,6 @@ namespace Parroquia
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (CATEGORIA == 1)
-            {
-                Imprimir a = new Imprimir(LIBRO, HOJA, PARTIDA, NOMBRE,
-                PADRE, MADRE, NACIMIENTO_LUGAR, FECHA_NACIMIENTO,
-                FECHA_BAUTISMO, PRESBITERO, MADRINA, PADRINO, ANOTACION,
-                CATEGORIA, 1);
-           //     Dispose();
-            }
-            else if (CATEGORIA == 2)
-            {
-                Imprimir a = new Imprimir(LIBRO, HOJA, PARTIDA, NOMBRE,
-                PADRE, MADRE, LUGAR_BAUTISMO, FECHA_BAUTISMO,
-                FECHA_CONFIRMACION, PRESBITERO, MADRINA, PADRINO, "",
-                CATEGORIA, 1);
-            //    Dispose();
-            }
-            else if (CATEGORIA == 3)
-            {
-                
-            }
-            else if (CATEGORIA == 4)
-            {
-                Imprimir a = new Imprimir(LIBRO, HOJA, PARTIDA, NOVIO,
-                 NOVIA, FECHA_MATRIMONIO, LUGAR_CELEBRACION, TESTIGO1,
-                 TESTIGO2, PRESBITERO, ANOTACION, "", "",
-                 CATEGORIA, 1);
-             //   Dispose();
-            }
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -202,7 +168,10 @@ namespace Parroquia
             }
             else if (CATEGORIA == 2)
             {
-               
+                Imprimir a = new Imprimir(LIBRO, HOJA, PARTIDA, NOMBRE,
+                PADRE, MADRE, LUGAR_BAUTISMO, FECHA_BAUTISMO,
+                FECHA_CONFIRMACION, PRESBITERO, MADRINA, PADRINO, "",
+                CATEGORIA, 2);
               
             }
             else if (CATEGORIA == 3)
@@ -217,7 +186,10 @@ namespace Parroquia
             }
             else if (CATEGORIA == 4)
             {
-
+                Imprimir a = new Imprimir(LIBRO, HOJA, PARTIDA, NOVIO,
+                NOVIA, FECHA_MATRIMONIO, LUGAR_CELEBRACION, TESTIGO1,
+                TESTIGO2, PRESBITERO, ANOTACION, "", "",
+                CATEGORIA, 2);
                // Dispose();
             }
         }

@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Parroquia.exe" size="7245824">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Parroquia.exe" size="7613952">
       <assemblyIdentity name="Parroquia" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>d3CRmRyKFLhqmKGUj2x9Mwd91Epc07R8KnmnmFpB3Es=</dsig:DigestValue>
+        <dsig:DigestValue>UjoECbDgweeQfrfvXNt/eUvA75Dql9hdE88l2ASVSBQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
