@@ -44,7 +44,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.telefono = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.logo = new System.Windows.Forms.PictureBox();
             this.cambiar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -58,7 +58,8 @@
             this.cp = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.email = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.BuscarImagen = new System.Windows.Forms.OpenFileDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -213,16 +214,16 @@
             this.label7.TabIndex = 14;
             this.label7.Text = "NOMBRE DE LA PARROQUIA";
             // 
-            // pictureBox1
+            // logo
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Parroquia.Properties.Resources.virgen;
-            this.pictureBox1.Location = new System.Drawing.Point(353, 27);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(194, 159);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
+            this.logo.BackColor = System.Drawing.Color.Transparent;
+            this.logo.Image = global::Parroquia.Properties.Resources.virgen;
+            this.logo.Location = new System.Drawing.Point(353, 27);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(194, 159);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.logo.TabIndex = 15;
+            this.logo.TabStop = false;
             // 
             // cambiar
             // 
@@ -232,6 +233,7 @@
             this.cambiar.TabIndex = 16;
             this.cambiar.Text = "cambiar";
             this.cambiar.UseVisualStyleBackColor = true;
+            this.cambiar.Click += new System.EventHandler(this.cambiar_Click);
             // 
             // label8
             // 
@@ -369,6 +371,10 @@
             this.email.Size = new System.Drawing.Size(270, 24);
             this.email.TabIndex = 25;
             // 
+            // BuscarImagen
+            // 
+            this.BuscarImagen.FileName = "openFileDialog1";
+            // 
             // Informacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -381,7 +387,7 @@
             this.Controls.Add(this.email);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cambiar);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.logo);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
@@ -400,7 +406,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "INFORMACIÓN";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -425,7 +431,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox telefono;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Button cambiar;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
@@ -439,5 +445,6 @@
         private System.Windows.Forms.TextBox cp;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox email;
+        private System.Windows.Forms.OpenFileDialog BuscarImagen;
     }
 }

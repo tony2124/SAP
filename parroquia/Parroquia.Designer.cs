@@ -35,6 +35,7 @@ namespace Parroquia
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informacionDeLaParroquiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.respaldoDeBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restaurarBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.ingresosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.egresosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,6 @@ namespace Parroquia
             this.primeraComuniónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.matrimonioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.configurarCoordenadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.descargarManualDeUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,6 +87,7 @@ namespace Parroquia
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fondoImg)).BeginInit();
@@ -112,6 +113,7 @@ namespace Parroquia
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.informacionDeLaParroquiaToolStripMenuItem,
             this.respaldoDeBDToolStripMenuItem,
+            this.restaurarBDToolStripMenuItem,
             this.toolStripSeparator2,
             this.ingresosToolStripMenuItem,
             this.egresosToolStripMenuItem,
@@ -134,6 +136,13 @@ namespace Parroquia
             this.respaldoDeBDToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.respaldoDeBDToolStripMenuItem.Text = "Respaldo de BD";
             this.respaldoDeBDToolStripMenuItem.Click += new System.EventHandler(this.respaldoDeBDToolStripMenuItem_Click);
+            // 
+            // restaurarBDToolStripMenuItem
+            // 
+            this.restaurarBDToolStripMenuItem.Name = "restaurarBDToolStripMenuItem";
+            this.restaurarBDToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.restaurarBDToolStripMenuItem.Text = "Restaurar BD";
+            this.restaurarBDToolStripMenuItem.Click += new System.EventHandler(this.restaurarBDToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -173,8 +182,7 @@ namespace Parroquia
             this.confirmaciónToolStripMenuItem,
             this.primeraComuniónToolStripMenuItem,
             this.matrimonioToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.configurarCoordenadasToolStripMenuItem});
+            this.toolStripSeparator1});
             this.librosToolStripMenuItem.Name = "librosToolStripMenuItem";
             this.librosToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.librosToolStripMenuItem.Text = "Libros";
@@ -182,42 +190,35 @@ namespace Parroquia
             // bautismoToolStripMenuItem
             // 
             this.bautismoToolStripMenuItem.Name = "bautismoToolStripMenuItem";
-            this.bautismoToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.bautismoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.bautismoToolStripMenuItem.Text = "Bautismo";
             this.bautismoToolStripMenuItem.Click += new System.EventHandler(this.bautismoToolStripMenuItem_Click);
             // 
             // confirmaciónToolStripMenuItem
             // 
             this.confirmaciónToolStripMenuItem.Name = "confirmaciónToolStripMenuItem";
-            this.confirmaciónToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.confirmaciónToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.confirmaciónToolStripMenuItem.Text = "Confirmación";
             this.confirmaciónToolStripMenuItem.Click += new System.EventHandler(this.confirmaciónToolStripMenuItem_Click);
             // 
             // primeraComuniónToolStripMenuItem
             // 
             this.primeraComuniónToolStripMenuItem.Name = "primeraComuniónToolStripMenuItem";
-            this.primeraComuniónToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.primeraComuniónToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.primeraComuniónToolStripMenuItem.Text = "Primera comunión";
             this.primeraComuniónToolStripMenuItem.Click += new System.EventHandler(this.primeraComuniónToolStripMenuItem_Click);
             // 
             // matrimonioToolStripMenuItem
             // 
             this.matrimonioToolStripMenuItem.Name = "matrimonioToolStripMenuItem";
-            this.matrimonioToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.matrimonioToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.matrimonioToolStripMenuItem.Text = "Matrimonio";
             this.matrimonioToolStripMenuItem.Click += new System.EventHandler(this.matrimonioToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(199, 6);
-            // 
-            // configurarCoordenadasToolStripMenuItem
-            // 
-            this.configurarCoordenadasToolStripMenuItem.Name = "configurarCoordenadasToolStripMenuItem";
-            this.configurarCoordenadasToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.configurarCoordenadasToolStripMenuItem.Text = "Configurar coordenadas";
-            this.configurarCoordenadasToolStripMenuItem.Click += new System.EventHandler(this.configurarCoordenadasToolStripMenuItem_Click);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(170, 6);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -466,11 +467,11 @@ namespace Parroquia
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(866, 621);
+            this.label5.Location = new System.Drawing.Point(941, 622);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 15);
+            this.label5.Size = new System.Drawing.Size(93, 15);
             this.label5.TabIndex = 18;
-            this.label5.Text = "PROTOTIPO DE PRUEBA";
+            this.label5.Text = "Pro20160413";
             // 
             // label13
             // 
@@ -622,6 +623,10 @@ namespace Parroquia
             // 
             this.bindingSource1.Filter = "";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Parroquia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -711,7 +716,6 @@ namespace Parroquia
         private Label label10;
         private Label label11;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripMenuItem configurarCoordenadasToolStripMenuItem;
         private LinkLabel linkLabel1;
         public BindingSource bindingSource1;
         private TextBox text_lugar;
@@ -720,6 +724,8 @@ namespace Parroquia
         private TextBox text_libro;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator3;
+        private ToolStripMenuItem restaurarBDToolStripMenuItem;
+        private OpenFileDialog openFileDialog1;
         public static Button btnbuscar;
 
 

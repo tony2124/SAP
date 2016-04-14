@@ -49,40 +49,33 @@ namespace Parroquia
         public void leerArchivoBautismo()
         {
             if(CATEGORIA == 1){
-                if (FORMATO == 0)
+                if (FORMATO == 0) //copia
                     newImage = global::Parroquia.Properties.Resources.Bautismo1;
-                else if (FORMATO == 1)
-                    //newImage = Image.FromFile("C:\\DOCSParroquia\\BautismoFormatoOriginal1.jpg");
-                    newImage = global::Parroquia.Properties.Resources.BautismoFormatoOriginal1;
-                else if(FORMATO == 2)
-                    //newImage = Image.FromFile("C:\\DOCSParroquia\\BautismoFormatoOriginal2.jpg");
+                else if(FORMATO == 2) //original
                     newImage = global::Parroquia.Properties.Resources.BautismoFormatoOriginal2;
             }
             else if (CATEGORIA == 2)
             {
-                if (FORMATO == 0)
+                if (FORMATO == 0) //copia
                     newImage = global::Parroquia.Properties.Resources.Confirmacion11;
-               else if (FORMATO == 1)
-                    //newImage = Image.FromFile("C:\\DOCSParroquia\\ConfirmacionOriginal.jpg");
+               else if (FORMATO == 2) //original
                     newImage = global::Parroquia.Properties.Resources.ConfirmacionOriginala;
                 
                 
             }
             else if (CATEGORIA == 3)
             {
-                if (FORMATO == 0)
+                if (FORMATO == 0) //copia
                     newImage = global::Parroquia.Properties.Resources.PrimeraComunion1;
-                else if(FORMATO==2)
-                   // newImage = Image.FromFile("C:\\DOCSParroquia\\ComunionOriginalFormato2.jpg");
+                else if(FORMATO==2) //original
                     newImage = global::Parroquia.Properties.Resources.ComunionOriginalFormato2b;
                     
             }
             else if (CATEGORIA == 4)
             {
-                if (FORMATO == 0)
+                if (FORMATO == 0) //copia
                     newImage = global::Parroquia.Properties.Resources.Matrimonio;
-                else if (FORMATO == 1)
-                   // newImage = Image.FromFile("C:\\DOCSParroquia\\MatrimonioOriginalFormato1.jpg");
+                else if (FORMATO == 2) //original
                     newImage = global::Parroquia.Properties.Resources.MatrimonioOriginalFormato1;
             }
                 
@@ -239,6 +232,7 @@ namespace Parroquia
             }
         }
 
+
         public void mandaImpresion(){
             pd.PrinterSettings = pDialog.PrinterSettings;
             pd.PrinterSettings.Copies = pDialog.PrinterSettings.Copies;
@@ -290,8 +284,6 @@ namespace Parroquia
 
             pd.Print();
         }
-
-
 
 
         //METODO PARA IMPRIMIR FORMATO ORIGINAL DE BAUTISMOS    PENDIENTE ***************
@@ -428,7 +420,7 @@ namespace Parroquia
 
 
             String[] fecha;
-            imprimeImagen(ev);
+            ev.Graphics.DrawImage(newImage, 0, 0);
 
             /*OBTENCION DE LA MITAD DE LA HOJA***********************/
             float tamaño_total, mitad;
@@ -616,7 +608,7 @@ namespace Parroquia
 
             string []fecha;
             float tamaño_total, mitad;
-            imprimeImagen(ev);
+            ev.Graphics.DrawImage(newImage, 0, 0);
 
             //NOMBRE
             tamaño_total = 880 - ev.Graphics.MeasureString(nombre, new Font("Times New Roman", 12, FontStyle.Bold)).Width;
@@ -781,7 +773,7 @@ namespace Parroquia
             y = int.Parse(Math.Round(float.Parse(y1 + "") * 35) + "");
 
             float tamaño_total, mitad;
-            imprimeImagen(ev);
+            ev.Graphics.DrawImage(newImage, 0, 0);
 
             //IMPRIME NOVIO
             tamaño_total = 880 - ev.Graphics.MeasureString(novio, new Font("Times New Roman", 12, FontStyle.Bold)).Width;
@@ -988,7 +980,7 @@ namespace Parroquia
 
                     var qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
                     var qrCode = qrEncoder.Encode("Certificado de Bautismo - " + Datos.GetValue(0) + ", " + Datos.GetValue(12) + " - Pbro. " + nombre_parroco + " - Expedido a " + nombre + " el " + fechaActual + ". LIBRO: " + libro + " FOJA: " + foja + " PARTIDA: " + partida);
-
+                    
                     var renderer = new GraphicsRenderer(new FixedModuleSize(5, QuietZoneModules.Two), Brushes.Black, Brushes.White);
 
                     var stream = new FileStream(@rutaQr, FileMode.Create);
@@ -1538,7 +1530,7 @@ namespace Parroquia
 
             System.Drawing.Image logo = System.Drawing.Image.FromFile(@"c:/DOCSParroquia/logo.jpg");
 
-            ev.Graphics.DrawImage(logo, 610, 60);
+            ev.Graphics.DrawImage(logo, 610, 60,155,215);
 
             //UBICACION PARROQUIA
 

@@ -31,28 +31,31 @@ namespace Parroquia
             BDatos.conexion();
             InitializeComponent();
             combo_categoria.SelectedIndex = 0;
-          
+            Text = "Sistema para la Administración de la Parroquia";
             /*************************** CONTAR REGISTROS DE TODOS LOS LIBROS *********************************/
             MySqlDataReader Datos = BDatos.obtenerBasesDatosMySQL("select count(id_bautismo) from bautismos");
-            if (Datos.HasRows)
-                while (Datos.Read())
-                    n_total_registros += Datos.GetInt32(0);
-            Datos.Close();
-            Datos = BDatos.obtenerBasesDatosMySQL("select count(id_confirmacion) from confirmaciones");
-            if (Datos.HasRows)
-                while (Datos.Read())
-                    n_total_registros += Datos.GetInt32(0);
-            Datos.Close();
-            Datos = BDatos.obtenerBasesDatosMySQL("select count(id_comunion) from comuniones");
-            if (Datos.HasRows)
-                while (Datos.Read())
-                    n_total_registros += Datos.GetInt32(0);
-            Datos.Close();
-            Datos = BDatos.obtenerBasesDatosMySQL("select count(id_matrimonio) from matrimonios");
-            if (Datos.HasRows)
-                while (Datos.Read())
-                    n_total_registros += Datos.GetInt32(0);
-            Datos.Close();
+            if (Datos != null)
+            {
+                if (Datos.HasRows)
+                    while (Datos.Read())
+                        n_total_registros += Datos.GetInt32(0);
+                Datos.Close();
+                Datos = BDatos.obtenerBasesDatosMySQL("select count(id_confirmacion) from confirmaciones");
+                if (Datos.HasRows)
+                    while (Datos.Read())
+                        n_total_registros += Datos.GetInt32(0);
+                Datos.Close();
+                Datos = BDatos.obtenerBasesDatosMySQL("select count(id_comunion) from comuniones");
+                if (Datos.HasRows)
+                    while (Datos.Read())
+                        n_total_registros += Datos.GetInt32(0);
+                Datos.Close();
+                Datos = BDatos.obtenerBasesDatosMySQL("select count(id_matrimonio) from matrimonios");
+                if (Datos.HasRows)
+                    while (Datos.Read())
+                        n_total_registros += Datos.GetInt32(0);
+                Datos.Close();
+            }
 
             ip.Text = LocalIPAddress();
             total_registros.Text = "" + n_total_registros;
@@ -413,12 +416,12 @@ namespace Parroquia
             foto++;
         }
 
-        private void configurarCoordenadasToolStripMenuItem_Click(object sender, EventArgs e)
+      /*  private void configurarCoordenadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             configurarCoordenada cc = new configurarCoordenada();
             cc.ShowDialog();
         }
-
+        */
         private void Parroquia_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult r = MessageBox.Show("¿Desea realizar un respaldo de los registros?", 
@@ -439,9 +442,107 @@ namespace Parroquia
             text_lugar.Text = "";
         }
 
-        private void informaciónDeLaParroquiaToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void restaurarBDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            metodoRestaurar();
+        }
+
+        private void metodoRestaurar()
         {
 
+            openFileDialog1.Filter = "Archivos SQL(*.sql)|*.sql|Archivos de Texto (*.txt)|*.txt";
+            openFileDialog1.Title = "Selecciona un archivo.";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (openFileDialog1.FileName != String.Empty)
+                {
+                    ConexionBD bd = new ConexionBD();
+                    bd.conexion();
+                    String fichero = openFileDialog1.FileName;
+                    MessageBox.Show(fichero);
+                   /* System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                    proc.EnableRaisingEvents = false;
+                    proc.StartInfo.UseShellExecute = false;
+                    proc.StartInfo.RedirectStandardOutput = true;
+                    proc.StartInfo.FileName = "mysqldump";
+                    proc.StartInfo.Arguments = ConexionBD.basedatos + " --single-transaction --host=" + ConexionBD.host + " --user=" + ConexionBD.usuario + " --password=" + ConexionBD.DesEncriptar(ConexionBD.contrasena);
+                    Process miProceso;
+                    miProceso = Process.Start(proc.StartInfo);*/
+                    try
+                    {
+                        Process miProceso = new Process();
+                        miProceso.EnableRaisingEvents = false;
+                        miProceso.StartInfo.UseShellExecute = false;
+                        miProceso.StartInfo.RedirectStandardInput = true;
+                        //Es necesario que el fichero mysql.exe esté en el PATH del sistema
+                        miProceso.StartInfo.FileName = "mysql";
+                        miProceso.StartInfo.Arguments = "--database="+ConexionBD.basedatos + " --host=" + ConexionBD.host + " --user=" + ConexionBD.usuario + " --password=" + ConexionBD.DesEncriptar(ConexionBD.contrasena);
+                        
+                        
+                        miProceso.Start();
+                        
+                        StreamWriter myStreamWriter = miProceso.StandardInput;
+                        myStreamWriter.Write(File.ReadAllText(fichero, Encoding.Default));
+                        myStreamWriter.Close();
+
+                        miProceso.WaitForExit();
+                        miProceso.Close();
+                        MessageBox.Show("Base de datos restaurada con éxito");
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                        return;
+                    }
+                    
+                }
+            }
+
+
+            /*
+            Cursor.Current = Cursors.WaitCursor;
+            openFileDialog1.FileName = "RESPALDO_BD_" + DateTime.Now.Day + "_" + DateTime.Now.ToString("MMMM") + "_" + DateTime.Now.Year + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second + ".sql";
+            openFileDialog1.AddExtension = true;
+            // saveFileDialog1.CheckFileExists = true;
+            openFileDialog1.Title = "RESPALDO DE LA BASE DE DATOS";
+            openFileDialog1.Filter = "Archivos SQL(*.sql)|*.sql|Archivos de Texto (*.txt)|*.txt|All files (*.*)|*.*";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (openFileDialog1.FileName != String.Empty)
+                {
+                    ConexionBD bd = new ConexionBD();
+                    bd.conexion();
+                    String linea;
+                    String fichero = openFileDialog1.FileName;
+                    System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                    proc.EnableRaisingEvents = false;
+                    proc.StartInfo.UseShellExecute = false;
+                    proc.StartInfo.RedirectStandardOutput = true;
+                    proc.StartInfo.FileName = "mysqldump";
+                    proc.StartInfo.Arguments = ConexionBD.basedatos + " --single-transaction --host=" + ConexionBD.host + " --user=" + ConexionBD.usuario + " --password=" + ConexionBD.DesEncriptar(ConexionBD.contrasena);
+                    Process miProceso;
+                    miProceso = Process.Start(proc.StartInfo);
+                    try
+                    {
+                        StreamReader sr = miProceso.StandardOutput;
+                        TextWriter tw = new StreamWriter(saveFileDialog1.FileName, false, Encoding.Default);
+                        while ((linea = sr.ReadLine()) != null)
+                        {
+                            tw.WriteLine(linea);
+                        }
+                        tw.Close();
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                        return;
+                    }
+                    MessageBox.Show("Copia de seguridad realizada con éxito");
+                }
+            }
+            Cursor.Current = Cursors.Default;*/
         }
     }
 }
