@@ -198,10 +198,10 @@ namespace Parroquia
             }
 
 
-            impresion = true;
+          //  impresion = true;
             //DESPUES DE GUARDAR IMPRIMO
-            Cursor.Current = Cursors.WaitCursor;
-            
+         //   Cursor.Current = Cursors.WaitCursor;
+            /*
             if (CATEGORIA == 2 && FORMATO == 2)
             {
                 DialogConfirmacion dc = new DialogConfirmacion();
@@ -218,7 +218,7 @@ namespace Parroquia
             }
 
             if (impresion)
-            {
+            {*/
                 //SE ESTABLECEN LAS PROPIEDADES DE IMPRESORA
                 if (ImpresoraProperties())
                 {
@@ -229,7 +229,7 @@ namespace Parroquia
                     mandaImpresion();
 
                 }
-            }
+         /*   }*/
         }
 
 
@@ -1326,135 +1326,78 @@ namespace Parroquia
             }
             Bdatos.Desconectar();
 
-
-           
-
-
         }
 
-        //IMPRIME COPIA DE MATRIMONIO      PENDIENTE *******************
+        //IMPRIME COPIA DE MATRIMONIO      
         private void imprimirMatrimonioCopia(object sender, PrintPageEventArgs ev)
         {
             String[] fecha;
             imprimeImagen(ev);
             float tamaño_total, mitad;
 
-
             //IMPRIME LIBRO
-            tamaño_total = 880 - ev.Graphics.MeasureString(libro,
-                new Font("Times New Roman", 10, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(libro,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-                       Brushes.Black, mitad - 110, 426);
+            ev.Graphics.DrawString(Int32.Parse(libro).ToString("D2"),
+               new Font("Arial", 10, FontStyle.Bold),
+                       Brushes.Black, 460, 365);
 
             //IMPRIME hoja
-            tamaño_total = 880 - ev.Graphics.MeasureString(foja,
-                new Font("Times New Roman", 10, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(foja,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-                       Brushes.Black, mitad, 426);
+            ev.Graphics.DrawString(Int32.Parse(foja).ToString("D4"),
+               new Font("Arial", 10, FontStyle.Bold),
+                       Brushes.Black, 590, 365);
 
             //IMPRIME partida
-            tamaño_total = 880 - ev.Graphics.MeasureString(partida,
-                new Font("Times New Roman", 10, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(partida,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-                       Brushes.Black, mitad + 150, 426);
+            ev.Graphics.DrawString(Int32.Parse(partida).ToString("D3"),
+               new Font("Arial", 10, FontStyle.Bold),
+                       Brushes.Black, 280, 458);
 
 
             //IMPRIME NOVIO
-            ev.Graphics.DrawString(novio,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-                       Brushes.Black, 290, 463);
+            ev.Graphics.DrawString(novio +" Y " +novia,
+               new Font("Arial", 10, FontStyle.Bold),
+                       Brushes.Black, 115, 423);
 
-            //IMPRIME NOVIA
-            ev.Graphics.DrawString(novia,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-                       Brushes.Black, 290, 498);
+            //IMPRIME NOVIO
+            ev.Graphics.DrawString(novio + " Y " + novia,
+               new Font("Arial", 10, FontStyle.Bold),
+                       Brushes.Black, 115, 575);
 
             //IMPRIME FECHA DE MATRIMONIO
             //separo la fecha de matrimonio
             fecha = fechaMatrimonio.Split('-');
             fecha[1] = fecha[1].ToUpper();
             //imprimo el dia
-            tamaño_total = 880 - ev.Graphics.MeasureString(fecha[2],
-                new Font("Times New Roman", 10, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
             ev.Graphics.DrawString(fecha[2],
-                new Font("Times New Roman", 11, FontStyle.Bold),
-                        Brushes.Black, mitad - 50, 535);
+                new Font("Arial", 10, FontStyle.Bold),
+                        Brushes.Black, 180, 515);
 
             //imprimo el mes
-            tamaño_total = 880 - ev.Graphics.MeasureString(fecha[1],
-               new Font("Times New Roman", 10, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
             ev.Graphics.DrawString(fecha[1],
-                new Font("Times New Roman", 11, FontStyle.Bold),
-                        Brushes.Black, mitad + 80, 535);
+                new Font("Arial", 10, FontStyle.Bold),
+                        Brushes.Black, 385, 515);
 
             //imprimo el año
-            tamaño_total = 880 - ev.Graphics.MeasureString(fecha[0],
-             new Font("Times New Roman", 10, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
             ev.Graphics.DrawString(fecha[0],
-                new Font("Times New Roman", 11, FontStyle.Bold),
-                        Brushes.Black, mitad + 220, 535);
+                new Font("Arial", 10, FontStyle.Bold),
+                        Brushes.Black, 590, 515);
 
             //IMPRIME LUGAR CELEBRACION
-            ev.Graphics.DrawString(lugarCelebracion,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-               Brushes.Black, 270, 575);
+            ev.Graphics.DrawString(nombre_parroquia +", "+lugarCelebracion,
+               new Font("Arial", 10, FontStyle.Bold),
+               Brushes.Black, 270, 493);
 
-            //IMPRIME PADRE NOVIO
-            if (padreNovio.Contains('=') == true)
-                padreNovio = "";
-
-            ev.Graphics.DrawString(padreNovio,
-              new Font("Times New Roman", 10, FontStyle.Bold),
-              Brushes.Black, 244, 611);
-
-            //IMPRIME MADRE NOVIO
-            if (madreNovio.Contains('=') == true)
-                madreNovio = "";
-            ev.Graphics.DrawString(madreNovio,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-               Brushes.Black, 480, 611);
-
-            //IMPRIME PADRE NOVIA
-            if (padreNovia.Contains('=') == true)
-                padreNovia = "";
-            ev.Graphics.DrawString(padreNovia,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-               Brushes.Black, 255, 651);
-
-            //IMPRIME MADRE NOVIA
-            if (madreNovia.Contains('=') == true)
-                madreNovia = "";
-            ev.Graphics.DrawString(madreNovia,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-               Brushes.Black, 480, 651);
-
+         
             //IMPRIME TESTIGO 1
             if (testigo1.Contains('=') == true)
                 testigo1 = "";
-            ev.Graphics.DrawString(testigo1,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-               Brushes.Black, 220, 695);
+            ev.Graphics.DrawString(testigo1 + " Y "+testigo2,
+               new Font("Arial", 10, FontStyle.Bold),
+               Brushes.Black, 115, 645);
 
-            //IMPRIME TESTIGO 2
-            if (testigo2.Contains('=') == true)
-                testigo2 = "";
-            ev.Graphics.DrawString(testigo2,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-               Brushes.Black, 480, 695);
-
+          
             //IMPRIME ASISTENTE
             ev.Graphics.DrawString(presbitero,
-               new Font("Times New Roman", 10, FontStyle.Bold),
-               Brushes.Black, 290, 750);
+               new Font("Arial", 10, FontStyle.Bold),
+               Brushes.Black, 115, 715);
 
             //ESTABLECEMOS LA FECHA ACTUAL
             String d = DateTime.Now.Day + "";
@@ -1462,28 +1405,45 @@ namespace Parroquia
             String a = DateTime.Now.Year + "";
 
             m = m.ToUpper();
-            ev.Graphics.DrawString(d,
-                new Font("Times New Roman", 12, FontStyle.Bold),
-                        Brushes.Black, 320, 820);
+            string fechaActual = d + " de " + m.ToLower() + " del " + a;
 
-            tamaño_total = 880 - ev.Graphics.MeasureString(m,
-            new Font("Times New Roman", 12, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(m,
-                new Font("Times New Roman", 12, FontStyle.Bold),
-                        Brushes.Black, mitad - 10, 820);
+            ev.Graphics.DrawString(lugar + " " + fechaActual,
+                new Font("Arial", 12, FontStyle.Regular),
+                        Brushes.Black, 113, 825 + y);
 
-            ev.Graphics.DrawString(a,
-                new Font("Times New Roman", 12, FontStyle.Bold),
-                        Brushes.Black, 580, 820);
 
-            //PARROCO
-            nombre_parroco = nombre_parroco.ToUpper();
-            tamaño_total = 880 - ev.Graphics.MeasureString(nombre_parroco, new Font("Times New Roman", 12, FontStyle.Bold)).Width;
+            tamaño_total = 440 - ev.Graphics.MeasureString(nombre_parroco,
+                new Font("Arial", 10, FontStyle.Bold)).Width;
             mitad = tamaño_total / 2;
             ev.Graphics.DrawString(nombre_parroco,
-               new Font("Times New Roman", 12, FontStyle.Bold),
-               Brushes.Black, mitad + 110, 970);
+               new Font("Arial", 10, FontStyle.Bold),
+                       Brushes.Black, mitad + 380, 935 + y);
+
+
+            /********************** QR **********************/
+            Bdatos.conexion();
+            Datos = Bdatos.obtenerBasesDatosMySQL("SELECT * FROM informacion");
+
+            if (Datos.HasRows)
+            {
+                while (Datos.Read())
+                {
+
+                    var qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
+                    var qrCode = qrEncoder.Encode("Certificado de Matrimonio - " + Datos.GetValue(0) + ", " + Datos.GetValue(12) + " - Pbro. " + nombre_parroco + " - Expedido a " + novio + " y "+novia+" el " + fechaActual + ". LIBRO: " + libro + " FOJA: " + foja + " PARTIDA: " + partida);
+
+                    var renderer = new GraphicsRenderer(new FixedModuleSize(5, QuietZoneModules.Two), Brushes.Black, Brushes.White);
+
+                    var stream = new FileStream(@rutaQr, FileMode.Create);
+                    renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
+
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(stream); //.FromFile(@rutaQr);
+
+                    ev.Graphics.DrawImage(img, 113, 860 + y, 130, 130);
+
+                }
+            }
+            Bdatos.Desconectar();
         }
 
 
