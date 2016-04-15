@@ -143,6 +143,9 @@ namespace Parroquia
             libro = a;
             foja = b;
             partida = c;
+
+         
+
             CATEGORIA = categoria;
             FORMATO = formato;
 
@@ -197,28 +200,6 @@ namespace Parroquia
 
             }
 
-
-          //  impresion = true;
-            //DESPUES DE GUARDAR IMPRIMO
-         //   Cursor.Current = Cursors.WaitCursor;
-            /*
-            if (CATEGORIA == 2 && FORMATO == 2)
-            {
-                DialogConfirmacion dc = new DialogConfirmacion();
-                dc.ShowDialog();
-
-                impresion = DialogConfirmacion.impresion;
-            }
-            else if (CATEGORIA == 4 && FORMATO == 0)
-            {
-                DialogMatrimonio dm = new DialogMatrimonio();
-                dm.ShowDialog();
-
-                impresion = DialogMatrimonio.impresion;
-            }
-
-            if (impresion)
-            {*/
                 //SE ESTABLECEN LAS PROPIEDADES DE IMPRESORA
                 if (ImpresoraProperties())
                 {
@@ -229,9 +210,8 @@ namespace Parroquia
                     mandaImpresion();
 
                 }
-         /*   }*/
-        }
 
+        }
 
         public void mandaImpresion(){
             pd.PrinterSettings = pDialog.PrinterSettings;
@@ -385,7 +365,7 @@ namespace Parroquia
                new Font("Arial", 12, FontStyle.Regular),
                        Brushes.Black, 265, 510 + y);
 
-            ev.Graphics.DrawString(Int32.Parse(foja).ToString("D5"),
+            ev.Graphics.DrawString(Int32.Parse(partida).ToString("D5"),
                new Font("Arial", 12, FontStyle.Regular),
                        Brushes.Black, 410, 510 + y);
 
@@ -652,7 +632,7 @@ namespace Parroquia
            ev.Graphics.DrawString(Int32.Parse(foja).ToString("D4"),
               new Font("Arial", 12, FontStyle.Regular),
               Brushes.Black, 390, 380);
-
+              
             //IMPRIME PARTIDA
             ev.Graphics.DrawString(Int32.Parse(partida).ToString("D5"),
               new Font("Arial", 12, FontStyle.Regular),
@@ -797,7 +777,6 @@ namespace Parroquia
         }
 
 
-
         //METODO PARA IMPRIMIR COPIA DE BAUTISMO
         public void imprimirBautismoCopia(object sender, PrintPageEventArgs ev)
         {
@@ -821,7 +800,7 @@ namespace Parroquia
                new Font("Arial", 12, FontStyle.Regular),
                        Brushes.Black, 448, 455 + y);
 
-            ev.Graphics.DrawString(Int32.Parse(foja).ToString("D5"),
+            ev.Graphics.DrawString(Int32.Parse(partida).ToString("D5"),
                new Font("Arial", 12, FontStyle.Regular),
                        Brushes.Black, 680, 455 + y);
 
@@ -968,7 +947,7 @@ namespace Parroquia
                new Font("Arial", 12, FontStyle.Regular),
                        Brushes.Black, 545, 405 + y);
 
-            ev.Graphics.DrawString(Int32.Parse(foja).ToString("D5"),
+            ev.Graphics.DrawString(Int32.Parse(partida).ToString("D5"),
                new Font("Arial", 12, FontStyle.Regular),
                        Brushes.Black, 680, 405 + y);
 
@@ -1106,7 +1085,7 @@ namespace Parroquia
                new Font("Arial", 12, FontStyle.Regular),
                        Brushes.Black, 688, 349 + y);
 
-            ev.Graphics.DrawString(Int32.Parse(foja).ToString("D5"),
+            ev.Graphics.DrawString(Int32.Parse(partida).ToString("D5"),
                new Font("Arial", 12, FontStyle.Regular),
                        Brushes.Black, 190, 371 + y);
 

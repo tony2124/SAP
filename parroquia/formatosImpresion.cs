@@ -65,7 +65,7 @@ namespace Parroquia
             this.LIBRO = libro;
             this.HOJA = hoja;
             this.PARTIDA = partida;
-
+            
             // TODO: Complete member initialization
             if (categoria == 1)
             { 
@@ -126,6 +126,8 @@ namespace Parroquia
                 PADRE, MADRE, NACIMIENTO_LUGAR, FECHA_NACIMIENTO,
                 FECHA_BAUTISMO, PRESBITERO, MADRINA, PADRINO, ANOTACION, 
                 CATEGORIA,0);
+
+                
                // Dispose();
             }
             else if (CATEGORIA == 2)

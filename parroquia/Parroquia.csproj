@@ -25,7 +25,7 @@
     <UpdateUrl>http://www.simpus.com.mx/actualizaciones/parroquia/</UpdateUrl>
     <ProductName>Sistema para la Administración de Parroquia</ProductName>
     <PublisherName>Simpus Soluciones Informáticas</PublisherName>
-    <ApplicationRevision>62</ApplicationRevision>
+    <ApplicationRevision>63</ApplicationRevision>
     <ApplicationVersion>3.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
