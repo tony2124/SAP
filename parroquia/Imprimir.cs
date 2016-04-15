@@ -445,12 +445,12 @@ namespace Parroquia
                 Brushes.Black, mitad - 120 + x, 410 + y);
 
             //IMPRIME PARROQUIA DEL BAUTIZADO
-            tamaño_total = 880 - ev.Graphics.MeasureString(parroquiaBautismo.ToUpper(), new Font("Arial", 9, FontStyle.Bold)).Width;
+           tamaño_total = 880 - ev.Graphics.MeasureString(nombre_parroquia.ToUpper(), new Font("Arial", 9, FontStyle.Bold)).Width;
             mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(parroquiaBautismo.ToUpper(),
+            ev.Graphics.DrawString(nombre_parroquia.ToUpper(),
                 new Font("Arial", 10, FontStyle.Bold),
                 Brushes.Black, mitad - 120 + x, 440 + y);
-
+            
             //IMPRIME LIBRO
             tamaño_total = 880 - ev.Graphics.MeasureString(libro,
                 new Font("Arial", 11, FontStyle.Bold)).Width;

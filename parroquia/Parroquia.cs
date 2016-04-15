@@ -13,6 +13,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
+using System.Drawing.Imaging;
 
 namespace Parroquia
 {
@@ -59,6 +60,12 @@ namespace Parroquia
 
             ip.Text = LocalIPAddress();
             total_registros.Text = "" + n_total_registros;
+
+            if (!File.Exists(@"C:/DOCSParroquia/logo.jpg"))
+            {
+                Image newImage = global::Parroquia.Properties.Resources.logo;
+                newImage.Save(@"C:/DOCSParroquia/logo.jpg", ImageFormat.Jpeg);
+            }
         }
 
         public void Pintar_tabla(String filtro, String libros)
