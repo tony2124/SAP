@@ -659,68 +659,34 @@ namespace Parroquia
                Brushes.Black, mitad-10, 480);
         }
 
-        //IMPRESION ORIGINAL DE MATRIMONIO    PENDIENTE *******************
+        //IMPRESION ORIGINAL DE MATRIMONIO    
         private void imprimirMatrimonioOriginal(object sender, PrintPageEventArgs ev)
         {
             string[] fecha;
 
-
-            // int x, y;
-            DbDatos.conexion();
-            datos = DbDatos.obtenerBasesDatosMySQL("select x,y from coordenadas where id=4;");
-            if (datos.HasRows)
-            {
-                while (datos.Read())
-                {
-                    x1 = datos.GetFloat(0);
-                    y1 = datos.GetFloat(1);
-                }
-            }
-            DbDatos.Desconectar();
-
-            x = int.Parse(Math.Round(float.Parse(x1 + "") * 35) + "");
-            y = int.Parse(Math.Round(float.Parse(y1 + "") * 35) + "");
-
-            float tamaño_total, mitad;
             ev.Graphics.DrawImage(newImage, 0, 0);
 
             //IMPRIME NOVIO
-            tamaño_total = 880 - ev.Graphics.MeasureString(novio, new Font("Arial", 12, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
             ev.Graphics.DrawString(novio,
-               new Font("Arial", 12, FontStyle.Bold),
-               Brushes.Black, mitad - 165 + x, 408 + y);
+               new Font("Arial", 10, FontStyle.Bold),
+               Brushes.Black, 360, 362 + y);
 
             //IMPRIME NOVIA
-            tamaño_total = 880 - ev.Graphics.MeasureString(novia, new Font("Arial", 12, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
             ev.Graphics.DrawString(novia,
-               new Font("Arial", 12, FontStyle.Bold),
-               Brushes.Black, mitad - 165 + x, 443 + y);
+               new Font("Arial", 10, FontStyle.Bold),
+               Brushes.Black, 340 + x, 399 + y);
 
             //FECHA DEL MATRIMONIO
             fecha = fechaMatrimonio.Split('-');//
-
-
-            ev.Graphics.DrawString(fecha[2],
-               new Font("Arial", 12, FontStyle.Bold),
-               Brushes.Black, 365 + x, 480 + y);
-
-            tamaño_total = 880 - ev.Graphics.MeasureString(fecha[1].ToUpper(),
-                new Font("Arial", 12, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(fecha[1].ToUpper(),
-              new Font("Arial", 12, FontStyle.Bold),
-              Brushes.Black, mitad - 295 + x, 513 + y);
-
-            ev.Graphics.DrawString(fecha[0].ToUpper(),
-             new Font("Arial", 12, FontStyle.Bold),
-             Brushes.Black, 325 + x, 513 + y);
-
+            String fechaActa = fecha[2] + " DE " + fecha[1].ToUpper() + " DEL "+ fecha[0];
+            ev.Graphics.DrawString(fechaActa,
+               new Font("Arial", 10, FontStyle.Bold),
+               Brushes.Black, 340, 608 + y);
+          
             //LUGAR CELEBRACION
             ev.Graphics.DrawString(lugarCelebracion,
-             new Font("Arial", 12, FontStyle.Bold),
-             Brushes.Black, 90 + x, 547 + y);
+             new Font("Arial", 10, FontStyle.Bold),
+             Brushes.Black, 460, 669 + y);
 
             //TESTIGOS
 
@@ -729,52 +695,62 @@ namespace Parroquia
             if (testigo2.Contains('=') == true)
                 testigo2 = "";
 
-            tamaño_total = 880 - ev.Graphics.MeasureString(testigo1,
-               new Font("Arial", 10, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
             ev.Graphics.DrawString(testigo1,
             new Font("Arial", 10, FontStyle.Bold),
-            Brushes.Black, mitad - 165 + x, 621 + y);
+            Brushes.Black, 420, 792 + y);
 
-            tamaño_total = 880 - ev.Graphics.MeasureString(testigo2,
-              new Font("Arial", 10, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
             ev.Graphics.DrawString(testigo2,
             new Font("Arial", 10, FontStyle.Bold),
-            Brushes.Black, mitad - 165 + x, 657 + y);
+            Brushes.Black, 420, 824 + y);
 
             //LIBRO
-            tamaño_total = 880 - ev.Graphics.MeasureString(libro,
-            new Font("Arial", 10, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(libro,
+            ev.Graphics.DrawString(Int32.Parse(libro).ToString("D2"),
             new Font("Arial", 10, FontStyle.Bold),
-            Brushes.Black, mitad - 290 + x, 716 + y);
+            Brushes.Black, 390, 884 + y);
 
-            //HOJA
-            tamaño_total = 880 - ev.Graphics.MeasureString(foja,
-            new Font("Arial", 10, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(foja,
+            //HOJA         
+            ev.Graphics.DrawString(Int32.Parse(foja).ToString("D4"),
             new Font("Arial", 10, FontStyle.Bold),
-            Brushes.Black, mitad - 295 + x, 750 + y);
+            Brushes.Black, 520, 884 + y);
 
             //PARTIDA
-            tamaño_total = 880 - ev.Graphics.MeasureString(partida,
-            new Font("Arial", 10, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(partida,
+            ev.Graphics.DrawString(Int32.Parse(partida).ToString("D5"),
             new Font("Arial", 10, FontStyle.Bold),
-            Brushes.Black, mitad - 285 + x, 787 + y);
+            Brushes.Black, 710, 884 + y);
 
             //PARROCO
-            tamaño_total = 880 - ev.Graphics.MeasureString("PBRO. " + presbitero, new Font("Arial", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString("PBRO. " + presbitero,
-               new Font("Arial", 9, FontStyle.Bold),
-               Brushes.Black, mitad - 33 + x, 786 + y);
+        
+            ev.Graphics.DrawString(presbitero,
+               new Font("Arial", 10, FontStyle.Bold),
+               Brushes.Black, 480, 730 + y);
 
+            /********************** QR **********************/
+            Bdatos.conexion();
+            Datos = Bdatos.obtenerBasesDatosMySQL("SELECT * FROM informacion");
+
+            if (Datos.HasRows)
+            {
+                while (Datos.Read())
+                {
+
+                    var qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
+                    var qrCode = qrEncoder.Encode("Boleta de Matrimonio - " + Datos.GetValue(0) + ", " + Datos.GetValue(12) + " - Pbro. " + nombre_parroco + " - Expedido a " + novio + " y " + novia + " el " + fechaActa + ". LIBRO: " + libro + " FOJA: " + foja + " PARTIDA: " + partida);
+
+                    var renderer = new GraphicsRenderer(new FixedModuleSize(5, QuietZoneModules.Two), Brushes.Black, Brushes.White);
+
+                    var stream = new FileStream(@rutaQr, FileMode.Create);
+                    renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
+
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(stream); //.FromFile(@rutaQr);
+
+                    ev.Graphics.DrawImage(img, 310, 930 + y, 130, 130);
+
+                }
+            }
+            Bdatos.Desconectar();
         }
+
+
 
 
         //METODO PARA IMPRIMIR COPIA DE BAUTISMO
