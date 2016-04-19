@@ -145,9 +145,6 @@
   <data name="guardar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\guardar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="parroq" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\parroq.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="p16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\p16.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -205,9 +202,6 @@
   <data name="facebook_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\facebook_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ejem" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ejem.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="comunion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\comunion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -252,9 +246,6 @@
   </data>
   <data name="PrimeraComunion1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PrimeraComunion1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BautismoFormatoOriginal1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BautismoFormatoOriginal1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BautismoFormatoOriginal2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BautismoFormatoOriginal2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

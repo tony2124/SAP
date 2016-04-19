@@ -74,6 +74,7 @@
             this.Controls.Add(this.formatoCopia);
             this.MaximizeBox = false;
             this.Name = "formatosImpresion";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

@@ -379,12 +379,14 @@ namespace Parroquia
 
         }
       
-        //IMPRESION DE BOLETA ORIGINAL DE CONFIRMACION        PENDIENTE   *******************
+        //IMPRESION DE BOLETA ORIGINAL DE CONFIRMACION        
         private void imprimirConfirmacionOriginal(object sender, PrintPageEventArgs ev)
         {
             
             String[] fecha;
             ev.Graphics.DrawImage(newImage, 0, 0);
+            System.Drawing.Image logo = System.Drawing.Image.FromFile(@"c:/DOCSParroquia/logo.jpg");
+            ev.Graphics.DrawImage(logo, 660, 80, 100, 137);
 
             /*OBTENCION DE LA MITAD DE LA HOJA***********************/
             float tamaño_total, mitad;
@@ -395,7 +397,7 @@ namespace Parroquia
             //IMPRIME NOMBRE
             ev.Graphics.DrawString(nombre,
                new Font("Arial", 10, FontStyle.Bold),
-                       Brushes.Black, mitad - 140 + x, 229 + y);
+                       Brushes.Black, mitad, 229 + y);
 
             //IMPRIME PADRES
             String padres = "";
@@ -410,10 +412,11 @@ namespace Parroquia
             else if (padre.Trim().Length < 4 && madre.Trim().Length > 4)
                 padres = madre;
             else if (padre.Trim().Length > 4 && madre.Trim().Length > 4)
-                padres = padre + " \n \n" + madre;
+                padres = padre + " Y " + madre;
+           
             ev.Graphics.DrawString(padres,
                new Font("Arial", 10, FontStyle.Bold),
-               Brushes.Black, 160 + x, 314 + y);
+               Brushes.Black, 180 , 270 + y);
 
 
             //IMPRIME PADRINOS
@@ -431,122 +434,83 @@ namespace Parroquia
             else if (padrino.Trim().Length > 4 && madrina.Trim().Length > 4)
                 padrinos = padrino + " Y " + madrina;
 
-            tamaño_total = 880 - ev.Graphics.MeasureString(padrinos, new Font("Arial", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
             ev.Graphics.DrawString(padrinos,
-                new Font("Arial", 9, FontStyle.Bold),
-                Brushes.Black, mitad - 120 + x, 378 + y);
+                new Font("Arial", 10, FontStyle.Bold),
+                Brushes.Black, 210, 292 + y);
 
             //IMPRIME LUGAR DE BAUTISMO
-            tamaño_total = 880 - ev.Graphics.MeasureString(lugarBautismo, new Font("Arial", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
+           /* */
             ev.Graphics.DrawString(lugarBautismo,
                 new Font("Arial", 10, FontStyle.Bold),
-                Brushes.Black, mitad - 120 + x, 410 + y);
-
-            //IMPRIME PARROQUIA DEL BAUTIZADO
-           tamaño_total = 880 - ev.Graphics.MeasureString(nombre_parroquia.ToUpper(), new Font("Arial", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(nombre_parroquia.ToUpper(),
-                new Font("Arial", 10, FontStyle.Bold),
-                Brushes.Black, mitad - 120 + x, 440 + y);
-            
-            //IMPRIME LIBRO
-            tamaño_total = 880 - ev.Graphics.MeasureString(libro,
-                new Font("Arial", 11, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(libro,
-                new Font("Arial", 11, FontStyle.Bold),
-                Brushes.Black, mitad - 385 + x, 470 + y);
-
-            //IMPRIME HOJA
-            tamaño_total = 880 - ev.Graphics.MeasureString(foja,
-                new Font("Arial", 11, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(foja,
-                new Font("Arial", 11, FontStyle.Bold),
-                Brushes.Black, mitad - 334 + x, 470 + y);
-
-            //IMPRIME PARTIDA
-            tamaño_total = 880 - ev.Graphics.MeasureString(partida,
-                new Font("Arial", 11, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(partida,
-                new Font("Arial", 11, FontStyle.Bold),
-                Brushes.Black, mitad - 284 + x, 470 + y);
+                Brushes.Black, 290, 310 + y);
 
             //IMPRIME FECHA DE BAUTISMO
             //separo la fecha de bautismo
             fecha = fechaBautismo.Split('-');
             fecha[1] = fecha[1].ToUpper();
 
-            //imprimo el dia
-            tamaño_total = 880 - ev.Graphics.MeasureString(fecha[2],
-                new Font("Arial", 11, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(fecha[2],
-                new Font("Arial", 11, FontStyle.Bold),
-                        Brushes.Black, mitad - 150 + x, 470 + y);
+            ev.Graphics.DrawString(fecha[2] + " DE " + fecha[1] +" DEL "+ fecha[0],
+                new Font("Arial", 10, FontStyle.Bold),
+                        Brushes.Black, 290, 330 + y);
 
-            //imprimo el mes
-            tamaño_total = 880 - ev.Graphics.MeasureString(fecha[1],
-                new Font("Arial", 11, FontStyle.Bold)).Width;
+    
+           //IMPRIME PRESBITERO
+            tamaño_total = 880 - ev.Graphics.MeasureString(presbitero, new Font("Arial", 9, FontStyle.Bold)).Width;
             mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(fecha[1],
-                new Font("Arial", 11, FontStyle.Bold),
-                        Brushes.Black, mitad - 40 + x, 470 + y);
-
-            //imprimo el año
-            tamaño_total = 880 - ev.Graphics.MeasureString(fecha[0],
-              new Font("Arial", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(fecha[0],
+           ev.Graphics.DrawString(presbitero,
                 new Font("Arial", 9, FontStyle.Bold),
-                        Brushes.Black, mitad + 80 + x, 470 + y);
+                Brushes.Black, mitad-5, 495 + y);
+            
+            //IMPRIME LIBRO
+            ev.Graphics.DrawString(Int32.Parse(libro).ToString("D2"),
+                new Font("Arial", 11, FontStyle.Bold),
+                Brushes.Black, 290, 450 + y);
 
+            //IMPRIME HOJA
+            ev.Graphics.DrawString(Int32.Parse(foja).ToString("D4"),
+                new Font("Arial", 11, FontStyle.Bold),
+                Brushes.Black, 393, 450 + y);
+
+            //IMPRIME PARTIDA
+            ev.Graphics.DrawString(Int32.Parse(partida).ToString("D5"),
+                new Font("Arial", 11, FontStyle.Bold),
+                Brushes.Black, 550, 450 + y);
+
+            
             //IMPRIME DIOCESIS DEL BAUTIZADO
-            tamaño_total = 880 - ev.Graphics.MeasureString(diocesisBautismo,
-              new Font("Arial", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
+            /*
             ev.Graphics.DrawString(diocesisBautismo,
                 new Font("Arial", 10, FontStyle.Bold),
                 Brushes.Black, mitad - 100 + x, 505 + y);
-
+            */
             //IMPRIME PARROQUIA DE CONFIRMACION
-            tamaño_total = 880 - ev.Graphics.MeasureString(nombre_parroquia + " " + lugar,
-           new Font("Arial", 7, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
-            ev.Graphics.DrawString(nombre_parroquia + " " + lugar,
-                new Font("Arial", 7, FontStyle.Bold),
-                Brushes.Black, mitad - 70 + x, 535 + y);
+            ev.Graphics.DrawString(nombre_parroquia,
+                new Font("Arial", 10, FontStyle.Bold),
+                Brushes.Black, 350, 370 + y);
+
+            ev.Graphics.DrawString(lugar,
+               new Font("Arial", 10, FontStyle.Bold),
+               Brushes.Black, 115, 390 + y);
 
             //IMPRIME FECHA DE CONFIRMACION
             //separo la fecha de CONFIRMACION
             fecha = fechaConfirmacion.Split('-');
             fecha[1] = fecha[1].ToUpper();
             //imprimo el dia
-            tamaño_total = 880 - ev.Graphics.MeasureString(fecha[2],
-         new Font("Arial", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
+
             ev.Graphics.DrawString(fecha[2],
-                new Font("Arial", 9, FontStyle.Bold),
-                        Brushes.Black, mitad - 185 + x, 625 + y);
+                new Font("Arial", 10, FontStyle.Bold),
+                        Brushes.Black, 295, 410 + y);
 
-            //imprimo el mes
-            tamaño_total = 880 - ev.Graphics.MeasureString(fecha[1],
-         new Font("Arial", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
             ev.Graphics.DrawString(fecha[1],
-                new Font("Arial", 9, FontStyle.Bold),
-                        Brushes.Black, mitad - 75 + x, 625 + y);
+                new Font("Arial", 10, FontStyle.Bold),
+                        Brushes.Black, 360, 410 + y);
 
-            //imprimo el año
-            tamaño_total = 880 - ev.Graphics.MeasureString(fecha[0],
-       new Font("Arial", 9, FontStyle.Bold)).Width;
-            mitad = tamaño_total / 2;
             ev.Graphics.DrawString(fecha[0],
-                new Font("Arial", 9, FontStyle.Bold),
-                        Brushes.Black, mitad + 50 + x, 625 + y);
+                new Font("Arial", 10, FontStyle.Bold),
+                        Brushes.Black, 560, 410 + y);
+
+     
 
         }
 
@@ -742,15 +706,13 @@ namespace Parroquia
                     renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
 
                     System.Drawing.Image img = System.Drawing.Image.FromStream(stream); //.FromFile(@rutaQr);
-
+                    stream.Close();
                     ev.Graphics.DrawImage(img, 310, 930 + y, 130, 130);
 
                 }
             }
             Bdatos.Desconectar();
         }
-
-
 
 
         //METODO PARA IMPRIMIR COPIA DE BAUTISMO
@@ -762,9 +724,6 @@ namespace Parroquia
             float tamaño_total, mitad;
             int y = 0;
             /********************************************************/
-
-
-
 
             //LIBRO,FOJA,PARTIDA
 
@@ -807,7 +766,6 @@ namespace Parroquia
 
 
             //IMPRIME FECHA DE BAUTISMO
-
 
             ev.Graphics.DrawString(fechaBautismo.ToUpper(),
                 new Font("Arial", 9, FontStyle.Bold),
@@ -871,7 +829,7 @@ namespace Parroquia
                     renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
 
                     System.Drawing.Image img = System.Drawing.Image.FromStream(stream); //.FromFile(@rutaQr);
-
+                    stream.Close();
                     ev.Graphics.DrawImage(img, 113, 860 + y, 130, 130);
 
                 }
@@ -950,7 +908,7 @@ namespace Parroquia
                 padres = padre + " Y " + madre;
             }
             ev.Graphics.DrawString(padres,
-                new Font("Arial", 11, FontStyle.Bold),
+                new Font("Arial", 10, FontStyle.Bold),
                         Brushes.Black, 215, 580);
 
             //IMPRIME PADRINOS
@@ -975,18 +933,18 @@ namespace Parroquia
                 padrinos =  padrino + " Y " + madrina;
             }
             ev.Graphics.DrawString(padrinos,
-                new Font("Arial", 11, FontStyle.Bold),
+                new Font("Arial", 10, FontStyle.Bold),
                         Brushes.Black, 315,695);
 
             //IMPRIME LUGAR Y FECHA DE BAUTISMO
             fecha = fechaBautismo.Split('-');
             ev.Graphics.DrawString(lugarBautismo + "." + " EL " + fecha[2] + " DE " + fecha[1].ToUpper() + " DE " + fecha[0] + ".",
-                new Font("Arial", 11, FontStyle.Bold),
+                new Font("Arial", 10, FontStyle.Bold),
                         Brushes.Black, 115, 665);
 
             //IMPRIME OBISPO
             ev.Graphics.DrawString(nombre_obispo,
-                new Font("Arial", 10, FontStyle.Bold),
+                new Font("Arial", 11, FontStyle.Bold),
                         Brushes.Black, 115, 450);
 
             //ESTABLECEMOS LA FECHA ACTUAL
@@ -1027,7 +985,7 @@ namespace Parroquia
                     renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
 
                     System.Drawing.Image img = System.Drawing.Image.FromStream(stream); //.FromFile(@rutaQr);
-
+                    stream.Close();
                     ev.Graphics.DrawImage(img, 113, 860 + y, 130, 130);
 
                 }
@@ -1203,7 +1161,7 @@ namespace Parroquia
                     renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
 
                     System.Drawing.Image img = System.Drawing.Image.FromStream(stream); //.FromFile(@rutaQr);
-
+                    stream.Close();
                     ev.Graphics.DrawImage(img, 113, 880 + y, 130, 130);
 
                 }
@@ -1322,7 +1280,7 @@ namespace Parroquia
                     renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
 
                     System.Drawing.Image img = System.Drawing.Image.FromStream(stream); //.FromFile(@rutaQr);
-
+                    stream.Close();
                     ev.Graphics.DrawImage(img, 113, 860 + y, 130, 130);
 
                 }

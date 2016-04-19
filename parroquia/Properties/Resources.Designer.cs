@@ -93,16 +93,6 @@ namespace Parroquia.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BautismoFormatoOriginal1 {
-            get {
-                object obj = ResourceManager.GetObject("BautismoFormatoOriginal1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap BautismoFormatoOriginal2 {
             get {
                 object obj = ResourceManager.GetObject("BautismoFormatoOriginal2", resourceCulture);
@@ -186,16 +176,6 @@ namespace Parroquia.Properties {
         internal static System.Drawing.Bitmap egresos {
             get {
                 object obj = ResourceManager.GetObject("egresos", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ejem {
-            get {
-                object obj = ResourceManager.GetObject("ejem", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -506,16 +486,6 @@ namespace Parroquia.Properties {
         internal static System.Drawing.Bitmap p9 {
             get {
                 object obj = ResourceManager.GetObject("p9", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap parroq {
-            get {
-                object obj = ResourceManager.GetObject("parroq", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

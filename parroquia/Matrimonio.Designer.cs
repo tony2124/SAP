@@ -520,6 +520,7 @@ namespace Parroquia
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Matrimonio";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.InsertarMatrimonios_Load);

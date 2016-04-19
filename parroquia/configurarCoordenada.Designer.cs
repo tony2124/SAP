@@ -446,7 +446,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Parroquia.Properties.Resources.ejem;
+            this.pictureBox1.Image = global::Parroquia.Properties.Resources.BautismoFormatoOriginal2;
             this.pictureBox1.Location = new System.Drawing.Point(335, 45);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(227, 294);
