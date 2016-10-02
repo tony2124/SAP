@@ -17,8 +17,8 @@ namespace Parroquia
         public acercade()
         {
             InitializeComponent();
-            linkLabel1.Links.Add(0,17, "www.simpus.com.mx");
-            linkLabel2.Links.Add(0, 19, "www.simpus.com.mx/es/software/parroquia/terminos");
+            linkLabel1.Links.Add(0,17, "www.improntadsi.com.mx");
+            linkLabel2.Links.Add(0, 19, "www.improntadsi.com.mx/es/software/parroquia/terminos");
 
             // Get the version of the executing assembly (that is, this assembly).
            /* Assembly assem = Assembly.GetExecutingAssembly();

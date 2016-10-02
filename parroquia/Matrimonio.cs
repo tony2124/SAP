@@ -64,25 +64,27 @@ namespace Parroquia
                 }
                 Datos.Close();
 
-                /*Estableciendo la partida*/
-                Partida = 0;
-                Datos = Bdatos.obtenerBasesDatosMySQL("select id_matrimonio from matrimonios where id_libro =" + ID_LIBRO + " AND bis = 0");
+                /*Estableciendo la partida y hoja*/
+                Partida = 1;
+                Hoja = 1;
+                Datos = Bdatos.obtenerBasesDatosMySQL("select id_libro, num_hoja, num_partida from matrimonios where id_libro =" + ID_LIBRO + " AND bis = 0  order by num_hoja asc, num_partida asc");
 
                 if (Datos.HasRows)
                 {
                     while (Datos.Read())
                     {
-                        Partida++;
+                        Partida = Datos.GetInt16(2);
+                        Hoja = Datos.GetInt16(1);
                     }
                 }
-
-                num_partida.Text = "" + (Partida + 1);
-
-                /*CALCULANDO LA HOJA*/
-                Hoja = Math.Ceiling((Partida + 1) / 10.0);
+                num_partida.Text = "" + (Partida+1);
                 num_hoja.Text = "" + Hoja;
                 Datos.Close();
-
+                /*CALCULANDO LA HOJA*/
+              /*  Hoja = Math.Ceiling((Partida + 1) / 10.0);
+                num_hoja.Text = "" + Hoja;
+                Datos.Close();
+                */
                 /*Reestablecer la ultima fecha de primera comunion*/
                 Datos = Bdatos.obtenerBasesDatosMySQL("select max(fecha_matrimonio) from matrimonios where id_libro = " + ID_LIBRO);
                 if (Datos.HasRows)
@@ -166,6 +168,8 @@ namespace Parroquia
             notas_marginales.Enabled = enabled;
             registronull.Enabled = enabled;
             registrobis.Enabled = enabled;
+            num_hoja.Enabled = enabled;
+            num_partida.Enabled = enabled;
         }
 
         /*Se establecen en blanco todos los campos*/
@@ -236,7 +240,8 @@ namespace Parroquia
             String bis = "0", partida = num_partida.Text;
             if (registrobis.Checked)
                 bis = "1";
-            
+            Partida = Int16.Parse(num_partida.Text);
+            Hoja = Int16.Parse(num_hoja.Text);
             if (Bdatos.peticion("insert into matrimonios(id_libro,num_hoja,num_partida,novio,novia,fecha_matrimonio,lugar_celebracion,testigo1,testigo2,asistente,nota_marginal,anio,bis)" +
                 " values('" + ID_LIBRO +
                 "','" + num_hoja.Text +
@@ -271,7 +276,7 @@ namespace Parroquia
                     "',lugar_celebracion='" + lugar_celebracion.Text + "',testigo1='" + testigo1.Text +
                     "',testigo2='" + testigo2.Text + "',asistente='" + asistente.Text +
                     "',nota_marginal='" + notas_marginales.Text + "',anio='" + fecha_Matrimonio.Value.Year +
-                    "' where id_matrimonio= '" + ID_REGISTRO + "';") > 0)
+                    "' , num_hoja = " + num_hoja.Text + ", num_partida = " + num_partida.Text + " where id_matrimonio= '" + ID_REGISTRO + "';") > 0)
             {
                 //Establecemos los componentes sin edicion
                 habilitarCampos(false);
@@ -447,11 +452,11 @@ namespace Parroquia
             else
                 registrobis.Checked = false;
 
-            num_partida.Text = "" + (Partida + 1);
-
+            num_partida.Text = "" + (Partida );
+            /*
             Hoja = Math.Ceiling((Partida + 1) / 10.0);
             num_hoja.Text = "" + Hoja;
-
+            */
             limpiarCampos();
         }
     }

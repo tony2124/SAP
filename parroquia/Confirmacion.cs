@@ -62,16 +62,22 @@ namespace Parroquia
                 ministro.AutoCompleteMode = AutoCompleteMode.Suggest;
                 ministro.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-                /*Estableciendo la partida*/
-                Partida = 0;
-                Datos = Bdatos.obtenerBasesDatosMySQL("select id_confirmacion from confirmaciones where id_libro =" + ID_LIBRO + " AND bis=0 ;");
+                /*Estableciendo la partida y hoja*/
+                Partida = 1;
+                Hoja = 1;
+                Datos = Bdatos.obtenerBasesDatosMySQL("select id_libro, num_hoja, num_partida from confirmaciones where id_libro =" + ID_LIBRO + " AND bis = 0  order by num_hoja asc, num_partida asc");
 
                 if (Datos.HasRows)
+                {
                     while (Datos.Read())
-                        Partida++;
+                    {
+                        Partida = Datos.GetInt16(2);
+                        Hoja = Datos.GetInt16(1);
+                    }
+                }
+                num_partida.Text = "" + (Partida + 1);
+                num_hoja.Text = "" + Hoja;
                 Datos.Close();
-                num_partida.Text = "" + (Partida+1);
-
                 /*Reestablecer la ultima fecha de bautismo*/
                 Datos = Bdatos.obtenerBasesDatosMySQL("select max(fecha_confirmacion) from confirmaciones where id_libro =" + ID_LIBRO);
 
@@ -82,9 +88,9 @@ namespace Parroquia
                 Datos.Close();
 
                 /*CALCULANDO LA HOJA*/
-                Hoja = Math.Ceiling((Partida + 1) / 10.0);
+              /*  Hoja = Math.Ceiling((Partida + 1) / 10.0);
                 num_hoja.Text = "" + Hoja;
-
+                */
                 Bdatos.Desconectar();
             }
             catch (Exception r) { MessageBox.Show("Error: " + r.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -167,6 +173,8 @@ namespace Parroquia
             ministro.Enabled = enabled;
             registronull.Enabled = enabled;
             registrobis.Enabled = enabled;
+            num_hoja.Enabled = enabled;
+            num_partida.Enabled = enabled;
         }
 
         /*Se establecen en blanco todos los campos*/
@@ -213,7 +221,8 @@ namespace Parroquia
             String bis = "0", partida = num_partida.Text;
             if (registrobis.Checked)
                 bis = "1";
-            
+            Partida = Int16.Parse(num_partida.Text);
+            Hoja = Int16.Parse(num_hoja.Text);
             if (Bdatos.peticion("insert into confirmaciones(id_libro,num_hoja,num_partida,nombre,padre,madre,fecha_confirmacion,fecha_bautismo,lugar_bautismo,padrino,madrina,presbitero,anio,bis)" +
                     " values('" + int.Parse(ID_LIBRO) +
                     "','" + int.Parse(num_hoja.Text) +
@@ -283,7 +292,7 @@ namespace Parroquia
                      "',fecha_confirmacion='" + fecconf.Value.ToString("yyyy-MM-dd") + "',fecha_bautismo='" + fecbau.Value.ToString("yyyy-MM-dd") +
                      "',lugar_bautismo='" + lugarbau.Text + "',padrino='" + padrino.Text +
                      "',madrina='" + madrina.Text + "',presbitero='" + ministro.Text +
-                     "',anio='" + fecconf.Value.Year + "' where id_confirmacion= '" + ID_REGISTRO + "';") > 0)
+                     "',anio='" + fecconf.Value.Year + "' , num_hoja = " + num_hoja.Text + ", num_partida = " + num_partida.Text + " where id_confirmacion= '" + ID_REGISTRO + "';") > 0)
             {
                 btn = false;
                 this.guardaImprimeBtn.Enabled = true;
@@ -445,11 +454,11 @@ namespace Parroquia
             else
                 registrobis.Checked = false;
 
-            num_partida.Text = "" + (Partida + 1);
-
+            num_partida.Text = "" + (Partida);
+            /*
             Hoja = Math.Ceiling((Partida + 1) / 10.0);
             num_hoja.Text = "" + Hoja;
-
+            */
             limpiarCampos();
         }
     }

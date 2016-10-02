@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Simpus\Desktop\PROGRAMA PARROQUIA\publicacion\</PublishUrl>
+    <PublishUrl>C:\Users\Simpus\Desktop\SAP\publicacion\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -25,7 +25,7 @@
     <UpdateUrl>http://www.simpus.com.mx/actualizaciones/parroquia/</UpdateUrl>
     <ProductName>Sistema para la Administración de Parroquia</ProductName>
     <PublisherName>Simpus Soluciones Informáticas</PublisherName>
-    <ApplicationRevision>65</ApplicationRevision>
+    <ApplicationRevision>73</ApplicationRevision>
     <ApplicationVersion>3.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -124,12 +124,6 @@
       <DependentUpon>acercade.cs</DependentUpon>
     </Compile>
     <Compile Include="ConexionBD.cs" />
-    <Compile Include="configurarCoordenada.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="configurarCoordenada.Designer.cs">
-      <DependentUpon>configurarCoordenada.cs</DependentUpon>
-    </Compile>
     <Compile Include="ImprimirIngresos.cs" />
     <Compile Include="ImprimirEgresos.cs" />
     <Compile Include="DatosConexionDB.cs">
@@ -234,9 +228,6 @@
     <EmbeddedResource Include="acercade.resx">
       <DependentUpon>acercade.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="configurarCoordenada.resx">
-      <DependentUpon>configurarCoordenada.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DatosConexionDB.resx">
       <DependentUpon>DatosConexionDB.cs</DependentUpon>
     </EmbeddedResource>
@@ -312,9 +303,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\simpus.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\bautismo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -366,9 +354,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\actualizar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\parroq.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\p1.jpg" />
@@ -431,9 +416,6 @@
     <None Include="Resources\p20.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ejem.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\guardar.png" />
   </ItemGroup>
   <ItemGroup>
@@ -470,31 +452,21 @@
     <None Include="Resources\Bautismo.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Confirmacion.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Matrimonio.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PrimeraComunion.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="espiritu santo.ico" />
     <Content Include="holy spirit.ico" />
     <Content Include="Holy Spirit2.ico" />
+    <None Include="Resources\exclamacion.png" />
     <None Include="Resources\logo.png" />
-    <None Include="Resources\parroquia_truncate.sql" />
     <None Include="Resources\ConfirmacionOriginala.jpg" />
     <None Include="Resources\ComunionOriginalFormato2b.jpg" />
     <None Include="Resources\BautismoFormatoOriginal2.jpg" />
-    <None Include="Resources\BautismoFormatoOriginal1.jpg" />
     <None Include="Resources\MatrimonioOriginalFormato1.jpg" />
-    <None Include="Resources\Image1.jpg" />
-    <None Include="Resources\MatrimonioOriginal.bmp" />
     <None Include="Resources\PrimeraComunion1.jpg" />
     <None Include="Resources\Confirmacion1.jpg" />
     <None Include="Resources\Book-Red.png" />
-    <None Include="Resources\libro.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

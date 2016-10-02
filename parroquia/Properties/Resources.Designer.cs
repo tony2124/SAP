@@ -183,6 +183,16 @@ namespace Parroquia.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap exclamacion {
+            get {
+                object obj = ResourceManager.GetObject("exclamacion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap facebook_icon {
             get {
                 object obj = ResourceManager.GetObject("facebook_icon", resourceCulture);
@@ -487,27 +497,6 @@ namespace Parroquia.Properties {
             get {
                 object obj = ResourceManager.GetObject("p9", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a -- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
-        ///--
-        ///-- Host: localhost    Database: test
-        ///-- ------------------------------------------------------
-        ///-- Server version	5.6.17
-        ///
-        ////*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-        ////*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-        ////*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-        ////*!40101 SET NAMES utf8 */;
-        ////*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-        ////*!40103 SET TIME_ZONE=&apos;+00:00&apos; */;
-        ////*!40014 SET [resto de la cadena truncado]&quot;;.
-        /// </summary>
-        internal static string parroquia_truncate {
-            get {
-                return ResourceManager.GetString("parroquia_truncate", resourceCulture);
             }
         }
         

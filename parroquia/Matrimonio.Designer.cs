@@ -289,11 +289,9 @@ namespace Parroquia
             // 
             // num_partida
             // 
-            this.num_partida.Enabled = false;
             this.num_partida.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.num_partida.Location = new System.Drawing.Point(469, 16);
             this.num_partida.Name = "num_partida";
-            this.num_partida.ReadOnly = true;
             this.num_partida.Size = new System.Drawing.Size(71, 23);
             this.num_partida.TabIndex = 48;
             this.num_partida.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -310,11 +308,9 @@ namespace Parroquia
             // 
             // num_hoja
             // 
-            this.num_hoja.Enabled = false;
             this.num_hoja.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.num_hoja.Location = new System.Drawing.Point(267, 16);
             this.num_hoja.Name = "num_hoja";
-            this.num_hoja.ReadOnly = true;
             this.num_hoja.Size = new System.Drawing.Size(79, 23);
             this.num_hoja.TabIndex = 44;
             this.num_hoja.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

@@ -59,17 +59,22 @@ namespace Parroquia
                 }
                 Datos.Close();
 
-                /*Estableciendo la partida*/
-                Partida = 0;
-                Datos = Bdatos.obtenerBasesDatosMySQL("select id_comunion from comuniones where id_libro = " + ID_LIBRO + "  AND bis = 0");
+                /*Estableciendo la partida y hoja*/
+                Partida = 1;
+                Hoja = 1;
+                Datos = Bdatos.obtenerBasesDatosMySQL("select id_libro, num_hoja, num_partida from comuniones where id_libro =" + ID_LIBRO + " AND bis = 0  order by num_hoja asc, num_partida asc");
 
                 if (Datos.HasRows)
+                {
                     while (Datos.Read())
-                        Partida++;
-
-                num_partida.Text = "" + (Partida+1);
+                    {
+                        Partida = Datos.GetInt16(2);
+                        Hoja = Datos.GetInt16(1);
+                    }
+                }
+                num_partida.Text = "" + (Partida + 1);
+                num_hoja.Text = "" + Hoja;
                 Datos.Close();
-
                 /*Reestablecer la ultima fecha de primera comunion*/
                 Datos = Bdatos.obtenerBasesDatosMySQL("select max(fecha_comunion) from comuniones where id_libro = " + ID_LIBRO);
                 if (Datos.HasRows)
@@ -78,10 +83,10 @@ namespace Parroquia
                 Datos.Close();
 
                 /*CALCULANDO LA HOJA*/
-                Hoja = Math.Ceiling((Partida + 1) / 10.0);
+              /*  Hoja = Math.Ceiling((Partida + 1) / 10.0);
 
                 num_hoja.Text = "" + Hoja;
-                
+                */
                 Bdatos.Desconectar();
             }
             catch (Exception r) { MessageBox.Show("Error: " + r.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -101,7 +106,9 @@ namespace Parroquia
             Text = "::MODIFICAR REGISTRO DE PRIMERA COMUNIÓN ::";
             toolTip1.SetToolTip(guardar, ":: MODIFICAR REGISTRO ::");
             toolTip1.SetToolTip(guardareimp, ":: IMPRIMIR::");
-
+            /*num_hoja.Enabled = false;
+            num_partida.Enabled = false;
+            */
             //cargar los datos para el autocomplete del textbox
             lugar_bautismo.AutoCompleteCustomSource = Autocomplete();
             lugar_bautismo.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -156,6 +163,8 @@ namespace Parroquia
             presbitero.Enabled = enabled;
             registronull.Enabled = enabled;
             registrobis.Enabled = enabled;
+            num_hoja.Enabled = enabled;
+            num_partida.Enabled = enabled;
         }
 
         /*Se establecen en blanco todos los campos*/
@@ -178,11 +187,11 @@ namespace Parroquia
             else
                 registrobis.Checked = false;
 
-            num_partida.Text = "" + (Partida + 1);
+            num_partida.Text = "" + (Partida );
 
-            Hoja = Math.Ceiling((Partida + 1) / 10.0);
+        /*    Hoja = Math.Ceiling((Partida + 1) / 10.0);
             num_hoja.Text = "" + Hoja;
-
+            */
             limpiarCampos();
         }
 
@@ -211,6 +220,8 @@ namespace Parroquia
             if (registrobis.Checked)
                 bis = "1";
             Bdatos.conexion();
+            Partida = Int16.Parse(num_partida.Text);
+            Hoja = Int16.Parse(num_hoja.Text);
             if (Bdatos.peticion("insert into comuniones(id_libro,num_hoja,num_partida,nombre,padre,madre,fecha_comunion,fecha_bautismo,lugar_bautismo,padrino,madrina,presbitero, anio, bis)" +
                 " values('" + ID_LIBRO +
                 "','" + num_hoja.Text +
@@ -245,7 +256,7 @@ namespace Parroquia
                 "',fecha_comunion='" + fechaPrimerCom.Value.ToString("yyyy-MM-dd") + "',fecha_bautismo='" + fecha_bautism.Value.ToString("yyyy-MM-dd") +
                 "',lugar_bautismo='" + lugar_bautismo.Text + "',padrino='" + padrino.Text +
                 "',madrina='" + madrina.Text + "', presbitero='" + presbitero.Text + "',anio='" + fechaPrimerCom.Value.Year +
-                "' where id_comunion= '" + ID_REGISTRO + "';") > 0)
+                "' , num_hoja = " + num_hoja.Text + ", num_partida = " + num_partida.Text + " where id_comunion= '" + ID_REGISTRO + "';") > 0)
             {
                 //Establecemos los componentes sin edicion
                 habilitarCampos(false);

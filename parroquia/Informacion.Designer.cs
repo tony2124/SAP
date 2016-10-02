@@ -210,14 +210,14 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(354, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(193, 15);
+            this.label7.Size = new System.Drawing.Size(246, 15);
             this.label7.TabIndex = 14;
-            this.label7.Text = "NOMBRE DE LA PARROQUIA";
+            this.label7.Text = "IMAGEN FORMATOS (100px x 200px)";
             // 
             // logo
             // 
             this.logo.BackColor = System.Drawing.Color.Transparent;
-            this.logo.Image = global::Parroquia.Properties.Resources.virgen;
+            this.logo.Image = global::Parroquia.Properties.Resources.logo_simpus;
             this.logo.Location = new System.Drawing.Point(353, 27);
             this.logo.Name = "logo";
             this.logo.Size = new System.Drawing.Size(194, 159);
@@ -227,7 +227,7 @@
             // 
             // cambiar
             // 
-            this.cambiar.Location = new System.Drawing.Point(548, 5);
+            this.cambiar.Location = new System.Drawing.Point(524, 28);
             this.cambiar.Name = "cambiar";
             this.cambiar.Size = new System.Drawing.Size(52, 23);
             this.cambiar.TabIndex = 16;

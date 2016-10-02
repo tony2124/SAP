@@ -38,7 +38,8 @@ namespace Parroquia
 
             BDatos.conexion();
             conjuntoDatos = BDatos.obtenerBasesDatosMySQL("select id_libro, nombre_libro from libros where id_categoria='" + CATEGORIA + "';");
-
+            if (conjuntoDatos == null)
+                return;
             datosNombre = new string[tamanio];
             datosID = new string[tamanio];
             int i = 0;

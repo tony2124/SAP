@@ -62,15 +62,22 @@ namespace Parroquia
                         libro.Text = Datos.GetString(0).ToString();
                 Datos.Close();
 
-                /*Estableciendo la partida*/
-                Partida = 0;
-                Datos = Bdatos.obtenerBasesDatosMySQL("select id_bautismo from bautismos where id_libro ="+ID_LIBRO+" AND bis=0;");
-                if (Datos.HasRows)
-                    while (Datos.Read())
-                        Partida++;
-                Datos.Close();
-                num_partida.Text = "" + (Partida + 1);
+                /*Estableciendo la partida y hoja*/
+                Partida = 1;
+                Hoja = 1;
+                Datos = Bdatos.obtenerBasesDatosMySQL("select id_libro, num_hoja, num_partida from bautismos where id_libro =" + ID_LIBRO + " AND bis = 0  order by num_hoja asc, num_partida asc");
 
+                if (Datos.HasRows)
+                {
+                    while (Datos.Read())
+                    {
+                        Partida = Datos.GetInt16(2);
+                        Hoja = Datos.GetInt16(1);
+                    }
+                }
+                num_partida.Text = "" + (Partida + 1);
+                num_hoja.Text = "" + Hoja;
+                Datos.Close();
                 /*Reestablecer la ultima fecha de bautismo*/
                 Datos = Bdatos.obtenerBasesDatosMySQL("select max(fecha_bautismo) from bautismos where id_libro =" + ID_LIBRO);
                 if (Datos.HasRows)
@@ -80,8 +87,8 @@ namespace Parroquia
                 Bdatos.Desconectar();
 
                 /*CALCULANDO LA HOJA*/    
-                Hoja = Math.Ceiling((Partida + 1) / 10.0);
-                num_hoja.Text = "" + Hoja;
+                /*Hoja = Math.Ceiling((Partida + 1) / 10.0);
+                num_hoja.Text = "" + Hoja;*/
                 
             }
             catch (Exception r) { MessageBox.Show("Error: " + r.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -165,6 +172,8 @@ namespace Parroquia
             anotacion.Enabled = enabled;
             registronull.Enabled = enabled;
             registrobis.Enabled = enabled;
+            num_hoja.Enabled = enabled;
+            num_partida.Enabled = enabled;
         }
 
         /*Se establecen en blanco todos los campos*/
@@ -207,7 +216,8 @@ namespace Parroquia
             if (registrobis.Checked)
                 bis = "1";
             Bdatos.conexion();
-
+            Partida = Int16.Parse(num_partida.Text);
+            Hoja = Int16.Parse(num_hoja.Text);
             //insertar datos
             if (Bdatos.peticion("insert into bautismos(id_libro,num_hoja,num_partida,nombre,padre,madre,fecha_nac,lugar_nac,fecha_bautismo,padrino,madrina,presbitero,anotacion,anio,bis)" +
                 " values('" + int.Parse(ID_LIBRO) +
@@ -226,6 +236,7 @@ namespace Parroquia
                 "','" + fechabautismo.Value.Year +
                 "'," + bis + ");") > 0)
             {
+                
                 MessageBox.Show("Datos ingresados correctamente ", " Acción exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Bdatos.Desconectar();
                 return true;
@@ -243,7 +254,7 @@ namespace Parroquia
                     "',fecha_nac='" + fechanac.Value.ToString("yyyy-MM-dd") + "',lugar_nac='" + lugarnac.Text +
                     "',fecha_bautismo='" + fechabautismo.Value.ToString("yyyy-MM-dd") + "',padrino='" + padrino.Text +
                     "',madrina='" + madrina.Text + "',presbitero='" + presbitero.Text +
-                    "',anotacion='" + anotacion.Text + "',anio='" + fechabautismo.Value.Year + "' where id_bautismo= '" + ID_REGISTRO + "';") > 0)
+                    "',anotacion='" + anotacion.Text + "',anio='" + fechabautismo.Value.Year + "', num_hoja = "+num_hoja.Text+", num_partida = "+num_partida.Text+" where id_bautismo= '" + ID_REGISTRO + "';") > 0)
             {
                 
                 //Establecemos los componentes sin edicion
@@ -375,10 +386,10 @@ namespace Parroquia
             else
                 registrobis.Checked = false;
             
-            num_partida.Text = "" + (Partida + 1);     
-            Hoja = Math.Ceiling((Partida + 1) / 10.0);
+            num_partida.Text = "" + Partida;     
+           /* Hoja = Math.Ceiling((Partida + 1) / 10.0);
             num_hoja.Text = "" + Hoja;
-
+            */
             limpiarCampos();
         }
 
